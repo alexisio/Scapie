@@ -103,22 +103,57 @@ function Stats() {
         else {
             var skillSet = '';
             lookup = lookup.trim();
-            embed.setAuthor(utilities.toTitle(data.username.trim()) + '\'s ' + utilities.toTitle(lookup) + ' hiscore', 'http://vignette3.wikia.nocookie.net/runescape2/images/d/db/Stats_Overall_icon_highscores.png/revision/latest/scale-to-width-down/21?cb=20130829204717', '')
-            var emoji = bot.emojis !== 'undefined' ? bot.emojis.find('name', utilities.toTitle(lookup)) : undefined;
+            var val = typeof skillAlias[lookup] !== 'undefined' ? skillAlias[lookup] : lookup;
+            embed.setAuthor(utilities.toTitle(data.username.trim()) + '\'s ' + utilities.toTitle(val) + ' hiscore', 'http://vignette3.wikia.nocookie.net/runescape2/images/d/db/Stats_Overall_icon_highscores.png/revision/latest/scale-to-width-down/21?cb=20130829204717', '')
+            var emoji = bot.emojis !== 'undefined' ? bot.emojis.find('name', utilities.toTitle(val)) : undefined;
             if (typeof emoji === 'undefined') {
                 emoji = utilities.toTitle(lookup);
             }
 
-            skillSet += emoji + space + utilities.markdown.bold(skills[lookup].level) + ' | '
-                + numeral(skills[lookup].exp).format() + ' | '
-                + numeral(skills[lookup].rank).format()
+            skillSet += emoji + space + utilities.markdown.bold(skills[val].level) + ' | '
+                + numeral(skills[val].exp).format() + ' | '
+                + numeral(skills[val].rank).format()
                 + linebreak;
-            embed.addField(utilities.markdown.bold(utilities.toTitle(lookup)), skillSet, true);
+            embed.addField(utilities.markdown.bold(utilities.toTitle(val)), skillSet, true);
         }
         embed.setFooter('Scapie', 'https://alexisio.github.com/Runescape/images/logos/Scapie_Flat.png');
         var ava = 'https://secure.runescape.com/m=avatar-rs/' + data.username.trim().replace(/ /g, '%20') + '/chat.png';
         embed.setThumbnail(ava);
         return embed;
+    };
+
+    var skillAlias = {
+        'att': 'attack',
+        'def': 'defence',
+        'str': 'strength',
+        'hp': 'hitpoints',
+        'range': 'ranged',
+        'pray': 'prayer',
+        'mage': 'magic',
+        'cook': 'cooking',
+        'wc': 'woodcutting',
+        'fletch': 'fletching',
+        'fish': 'fishing',
+        'fm': 'firemaking',
+        'craft': 'crafting',
+        'smith': 'smithing',
+        'mine': 'mining',
+        'herb': 'herblore',
+        'agil': 'agility',
+        'thieve': 'thieving',
+        'slay': 'slayer',
+        'farm': 'farming',
+        'rc': 'runecrafting',
+        'runespanning': 'runecrafting',
+        'runespan': 'runecrafting',
+        'hunt': 'hunter',
+        'con': 'construction',
+        'cons': 'construction',
+        'sum': 'summoning',
+        'dg': 'dungeoneering',
+        'dung': 'dungeoneering',
+        'div': 'divination',
+        'inv': 'invention'
     };
 
 }

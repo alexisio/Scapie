@@ -24,7 +24,8 @@ function Spotlight() {
                 }
                 else {
                     specific = true;
-                    apiRequest += '/minigame/' + suffix.replace(/ /g, '%20');
+                    var val = typeof minigameAlias[suffix] !== 'undefined' ? minigameAlias[suffix] : suffix;
+                    apiRequest += '/minigame/' + val.replace(/ /g, '%20');
                 }
             }
             console.log(apiRequest);
@@ -35,7 +36,8 @@ function Spotlight() {
                     sendType: utilities.sendType.EMBED
                 });
             }).catch(function (err) {
-                reject(err);
+                reject({command: 'spotlight', value: 'Unable to find spotlight', sendType: utilities.sendType.STRING});
+                reject({command: 'spotlight', value: 'Unable to find spotlight', sendType: utilities.sendType.STRING});
             });
         });
     };
@@ -66,6 +68,22 @@ function Spotlight() {
         embed.setFooter('Scapie', 'https://alexisio.github.com/Runescape/images/logos/Scapie_Flat.png');
 
         return embed;
+    };
+
+    var minigameAlias = {
+        'pc': 'pest control',
+        'sw': 'soul wars',
+        'fog': 'fist of guthix',
+        'ba': 'barbarian assault',
+        'con': 'conquest',
+        'ft': 'fishing trawler',
+        'gop': 'great orb project',
+        'cw': 'castle wars',
+        'sc': 'stealing creation',
+        'cfb': 'cabbage facepunch bonanza',
+        'heist': 'heist',
+        'ma': 'mobilising armies',
+        'tb': 'trouble brewing'
     };
 
 }

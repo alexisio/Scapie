@@ -15,6 +15,10 @@ bot.on('ready', function () {
     console.log('I am ready');
 });
 
+bot.on('guildCreate', function(guild) {
+    console.log(guild);
+})
+
 bot.on('message', function (msg) {
     var message = msg.content.toLowerCase();
     if (message.startsWith('!')) {
@@ -22,6 +26,9 @@ bot.on('message', function (msg) {
         var user = msg.author;
         var permissions = msg.channel.permissionsFor(user);
         var canManage = permissions.hasPermission('MANAGE_CHANNELS', true);
+
+        // get the guild making the request and load their config
+        var guildId = msg.guild.id;
 
         // get command input
         var endOfLine = message.indexOf(' ');
@@ -57,3 +64,20 @@ bot.on('message', function (msg) {
         }
     }
 });
+
+setInterval(function () {
+    var list = [
+        { status: 'online', game: { name: 'with Araxxor' } },
+        { status: 'online', game: { name: 'with the Barrows Bros' } },
+        { status: 'online', game: { name: 'with Yakamaru' } },
+        { status: 'online', game: { name: 'with Telos' } },
+        { status: 'online', game: { name: 'with Nex' } },
+        { status: 'online', game: { name: 'with the Angel of Death' } },
+        { status: 'online', game: { name: 'Heist' } },
+        { status: 'online', game: { name: 'Castle Wars' } },
+        { status: 'online', game: { name: 'in the Max Guild' } }
+    ];
+    var index = Math.floor(Math.random() * list.length);
+    var presence = list[index];
+    bot.user.setPresence(presence);
+}, 300000);
