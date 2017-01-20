@@ -9,7 +9,7 @@ function RoTS() {
     this.examples = ['!rots', '!rots 10/10/2020']
     this.alias = [];
     this.description = 'Get the RoTS rotation for today or specified day';
-    this.type = 'rotation'
+    this.type = 'rotation';
     this.enabled = true;
     this.run = function (bot, message, suffix) {
         return new Promise(function (resolve, reject) {

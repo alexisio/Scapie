@@ -57,7 +57,6 @@ function Araxxor() {
         }
         embed.setFooter('Scapie', 'https://alexisio.github.com/Runescape/images/logos/Scapie_Flat.png');
         embed.setThumbnail(ava);
-        embed.setTimestamp(new Date());
 
         return embed;
     };

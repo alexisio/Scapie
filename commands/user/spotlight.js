@@ -59,12 +59,11 @@ function Spotlight() {
         }
         else {
             var s = utilities.dateToString(new Date(current.startDate));
-            currentData += ' will be on Spotlight at reset on ' + markdown.bold(s);
+            currentData += ' will be on Spotlight at reset on ' + utilities.markdown.bold(s);
             embed.addField(utilities.markdown.bold('Rotation'), currentData, true);
         }
 
         embed.setFooter('Scapie', 'https://alexisio.github.com/Runescape/images/logos/Scapie_Flat.png');
-        embed.setTimestamp(new Date());
 
         return embed;
     };
