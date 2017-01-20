@@ -1,0 +1,10 @@
+{
+  "auth": {
+    "prodToken": "MjcxODgwNDU2OTAxNzU0ODgw.C2M4JA.nI0Ejhgp-D-1MdK0Ya3IbtPlUAU",
+    "devToken": "MjcxNjcyNDI2OTk0MDczNjEx.C2J2MQ.PZJooL6Iywvj-fPBL3kAfjjsx2A"
+  },
+  "api": {
+    "prod": "http://localhost:8000",
+    "dev": "http://localhost:8000"
+  }
+}

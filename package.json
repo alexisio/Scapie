@@ -1,0 +1,10 @@
+{
+  "name": "scapie",
+  "version": "0.0.1",
+  "dependencies": {
+    "discord.js": "^11.0.0",
+    "numeral": "^2.0.4",
+    "promise": "^7.1.1",
+    "request": "^2.79.0"
+  }
+}
