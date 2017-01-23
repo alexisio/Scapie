@@ -42,7 +42,7 @@ function Help(user, mod) {
                 var h = helpData[i];
                 var aliases = '';
                 h.alias.forEach(function(a) { aliases += a + ', ' });
-                helpDisplay += utilities.toTitle(h.name) + ' - ' + h.description + '\n' +
+                helpDisplay += utilities.markdown.bold(utilities.toTitle(h.name)) + ' - ' + utilities.markdown.italicize(h.description) + '\n' +
                     'Usage:   ' + h.usage +
                     (aliases.trim().length > 0 ? '\nAliases: ' + aliases.substring(0, aliases.length - 2).trim() : '')
                     + '\n\n';

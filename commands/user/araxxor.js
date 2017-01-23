@@ -8,7 +8,7 @@ function Araxxor() {
     this.usage = '!araxxor [<lookupDate>]';
     this.examples = ['!araxxor', '!araxxor 10/10/2020']
     this.alias = ['rax'];
-    this.description = 'Get the araxxor rotation for today or specified day';
+    this.description = 'Get the Araxxor rotation for today or specified day';
     this.type = 'rotation';
     this.enabled = true;
     this.run = function (bot, message, suffix) {

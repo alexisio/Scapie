@@ -9,7 +9,7 @@ function Stats() {
     this.usage = '!stats <username>[, <skill>]';
     this.examples = ['!stats Sync', '!stats Sync, prayer']
     this.alias = ['hiscores'];
-    this.description = 'Get a users stats';
+    this.description = 'Get a user\'s stats';
     this.type = 'lookup';
     this.enabled = true;
     this.run = function (bot, message, suffix) {
@@ -79,11 +79,15 @@ function Stats() {
     var format = function (bot, data, lookup) {
         var embed = new Discord.RichEmbed();
         var skills = data.skills;
+        var xpEmoji = bot.emojis !== 'undefined' ? bot.emojis.find('name', utilities.toTitle('Xp')) : 'Xp';
+        var rankEmoji = bot.emojis !== 'undefined' ? bot.emojis.find('name', utilities.toTitle('Rank')) : 'Rank';
         if (typeof lookup === 'undefined') {
             embed.setAuthor('Stats for ' + utilities.toTitle(data.username.trim()), 'http://vignette3.wikia.nocookie.net/runescape2/images/d/db/Stats_Overall_icon_highscores.png/revision/latest/scale-to-width-down/21?cb=20130829204717', '')
 
             var overallEmoji = bot.emojis !== 'undefined' ? bot.emojis.find('name', utilities.toTitle('Overall')) : 'Overall';
-            var overall = overallEmoji + space + utilities.markdown.bold(numeral(skills['overall'].level).format()) + linebreak + '\t\t' + numeral(skills['overall'].exp).format() + linebreak;
+            var overall = overallEmoji + space + utilities.markdown.bold(numeral(skills['overall'].level).format()) + linebreak +
+                xpEmoji + space + numeral(skills['overall'].exp).format() + linebreak +
+                rankEmoji + space + numeral(skills['overall'].rank).format() + linebreak;
             embed.setDescription(overall)
 
             for (var skillType in skillTypes) {
@@ -110,9 +114,9 @@ function Stats() {
                 emoji = utilities.toTitle(lookup);
             }
 
-            skillSet += emoji + space + utilities.markdown.bold(skills[val].level) + ' | '
-                + numeral(skills[val].exp).format() + ' | '
-                + numeral(skills[val].rank).format()
+            skillSet += emoji + space + utilities.markdown.bold(skills[val].level) + linebreak +
+                xpEmoji + space + numeral(skills[val].exp).format() + linebreak +
+                rankEmoji + space + numeral(skills[val].rank).format()
                 + linebreak;
             embed.addField(utilities.markdown.bold(utilities.toTitle(val)), skillSet, true);
         }

@@ -93,7 +93,7 @@ function VoS() {
             '0% more base Farming XP from planting and checking the fruit tree patch, and from checking the harmony pillars. Trees planted in the district will have a chance of skipping growth stages.',
             '20% more Herblore XP from making combination potions.'
         ],
-        'Trahaear': [
+        'Trahaearn': [
             '20% more base Mining XP ores, gems, and Seren Stones in the district. Mining any type of ore has a chance of yielding corrupted ore (this occurs at any mining level, and will count towards the 100 needed to unlock the "of the Trahaearn" title.)',
             'Ore rocks have a chance of changing into harmonised rocks temporarily, allowing the rocks to be mined without running out of ore (similar to the concentrated ore in the Living Rock Caverns).',
             'Mining harmonised coal rocks will count towards "Concentrated Coal Deposits" tasks.',

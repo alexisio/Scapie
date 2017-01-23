@@ -8,7 +8,7 @@ function Vorago() {
     this.usage = '!vorago [<lookupDate>]';
     this.examples = ['!vorago', '!vorago 10/10/2020']
     this.alias = ['rago'];
-    this.description = 'Get the vorago rotation for today or specified day';
+    this.description = 'Get the Vorago rotation for today or specified day';
     this.type = 'rotation';
     this.enabled = true;
     this.run = function (bot, message, suffix) {

@@ -9,7 +9,7 @@ function Alog() {
     this.usage = '!alog <username>';
     this.examples = ['!alog Sync'];
     this.alias = [];
-    this.description = 'Get a users adventure log';
+    this.description = 'Get a user\'s RuneMetrics event log';
     this.type = 'lookup';
     this.enabled = true;
     this.run = function (bot, message, suffix) {

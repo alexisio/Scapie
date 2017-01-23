@@ -8,7 +8,7 @@ function Viswax() {
     this.usage = '!viswax';
     this.examples = ['!viswax']
     this.alias = [];
-    this.description = 'Get the current viswax combo per Vis Wax FC';
+    this.description = 'Get the current vis wax combo per Vis Wax FC';
     this.type = 'distraction';
     this.enabled = true;
     this.run = function (bot, message, suffix) {
