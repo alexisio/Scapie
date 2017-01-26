@@ -31,6 +31,7 @@ function VoS() {
                 vos += vos.length > 0 ? '-' + district : district;
             }
         }
+        console.log(vos);
 
         var embed = new Discord.RichEmbed();
         embed.setAuthor('Voice of Seren', 'http://vignette2.wikia.nocookie.net/runescape2/images/5/50/Seren_%28with_Eluned%29_chathead.png/revision/latest?cb=20151030153838', '');

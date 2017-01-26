@@ -24,8 +24,8 @@ function Viswax() {
         var embed = new Discord.RichEmbed();
         embed.setAuthor('Vis Wax FC v4', 'https://secure.runescape.com/m=avatar-rs/SugarsTiamat/chat.png', '');
         embed.setThumbnail('http://vignette1.wikia.nocookie.net/runescape2/images/4/49/Vis_wax_detail.png/revision/latest/scale-to-width-down/150?cb=20140915115106');
-        embed.addField(utilities.markdown.bold('First Rune'), data.slot1, true);
-        embed.addField(utilities.markdown.bold('Second Rune'), data.slot2.replace(/ /g, '\n'), true);
+        embed.addField(utilities.markdown.bold('First Rune'), data.slot1.replace(/\(/g, ' ('));
+        embed.addField(utilities.markdown.bold('Second Rune'), data.slot2.replace(/\(/g, ' (').replace(/\) /g, ')\n').replace(/,/g, ', '));
         embed.setFooter('Scapie - ' + data.lastUpdate, 'https://alexisio.github.com/Runescape/images/logos/Scapie_Flat.png');
         return embed;
     };
