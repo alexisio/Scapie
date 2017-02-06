@@ -8,7 +8,8 @@ var stats = require('./stats'),
     vos = require('./vos'),
     portables = require('./portables'),
     alog = require('./alog'),
-    price = require('./price');
+    price = require('./price'),
+    calc = require('./calc');
 
 function User() {
     this.stats = stats;
@@ -22,6 +23,7 @@ function User() {
     this.portables = portables;
     this.alog = alog;
     this.price = price;
+    this.calc = calc;
 }
 
 module.exports = new User();
