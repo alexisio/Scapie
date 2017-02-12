@@ -25,7 +25,7 @@ function Calc() {
 
     var format = function(suffix) {
         var result = eval(suffix.replace(/[^-()\d/*+.]/g, ''));
-        return result;
+        return numeral(result).format();
     }
 }
 
