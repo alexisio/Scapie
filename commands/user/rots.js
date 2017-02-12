@@ -42,15 +42,15 @@ function RoTS() {
         ];
         embed.setAuthor('Rise of the Six', bobbled[Math.floor(Math.random() * 6)], '');
 
-        var todayData = utilities.markdown.boldUnderline('East:\n') + rotation.rotation.east.replace(/-/g, '\n').replace(/ /g, '') + linebreak + linebreak +
-            utilities.markdown.boldUnderline('West:\n') + rotation.rotation.west.replace(/-/g, '\n').replace(/ /g, '');
+        var todayData = utilities.markdown.bold('East:\t  ') + rotation.rotation.east.replace(/ /g, '').replace(/-/g, ' - ') + linebreak +
+            utilities.markdown.bold('West:\t') + rotation.rotation.west.replace(/ /g, '').replace(/-/g, ' - ');
 
         if (!future) {
-            var tomorrowData = utilities.markdown.boldUnderline('East:\n') + next.rotation.east.replace(/-/g, '\n').replace(/ /g, '') + linebreak + linebreak +
-                utilities.markdown.boldUnderline('West:\n') + next.rotation.west.replace(/-/g, '\n').replace(/ /g, '');
+            var tomorrowData = utilities.markdown.bold('East:\t  ') + next.rotation.east.replace(/ /g, '').replace(/-/g, ' - ') + linebreak +
+                utilities.markdown.bold('West:\t') + next.rotation.west.replace(/ /g, '').replace(/-/g, ' - ');
 
-            embed.addField(utilities.markdown.bold('Today'), todayData, true);
-            embed.addField(utilities.markdown.bold('Tomorrow'), tomorrowData, true);
+            embed.addField(utilities.markdown.bold('Today'), todayData);
+            embed.addField(utilities.markdown.bold('Tomorrow'), tomorrowData);
         }
         else {
             var s = utilities.dateToString(new Date(rotation.startDate));

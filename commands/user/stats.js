@@ -85,7 +85,7 @@ function Stats() {
             embed.setAuthor('Stats for ' + utilities.toTitle(data.username.trim()), 'http://vignette3.wikia.nocookie.net/runescape2/images/d/db/Stats_Overall_icon_highscores.png/revision/latest/scale-to-width-down/21?cb=20130829204717', '')
 
             var overallEmoji = bot.emojis !== 'undefined' ? bot.emojis.find('name', utilities.toTitle('Overall')) : 'Overall';
-            var overall = overallEmoji + space + utilities.markdown.bold(numeral(skills['overall'].level).format()) + linebreak +
+            var overall = ' ' + overallEmoji + space + utilities.markdown.bold(numeral(skills['overall'].level).format()) + linebreak +
                 xpEmoji + space + numeral(skills['overall'].exp).format() + linebreak +
                 rankEmoji + space + numeral(skills['overall'].rank).format() + linebreak;
             embed.setDescription(overall)
@@ -114,7 +114,7 @@ function Stats() {
                 emoji = utilities.toTitle(lookup);
             }
 
-            skillSet += emoji + space + utilities.markdown.bold(skills[val].level) + linebreak +
+            skillSet += ' ' + emoji + space + utilities.markdown.bold(skills[val].level) + linebreak +
                 xpEmoji + space + numeral(skills[val].exp).format() + linebreak +
                 rankEmoji + space + numeral(skills[val].rank).format()
                 + linebreak;

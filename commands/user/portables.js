@@ -33,7 +33,7 @@ function Portables() {
             }
         }
         embed.addField(utilities.markdown.bold('Locations'), calls, true);
-        embed.addField(utilities.markdown.bold('Abbreviations'), data.abbrev.replace(/\|/g, '\n').trim(), true);
+        embed.addField(utilities.markdown.bold('Abbreviations'), data.abbrev.replace(/\| /g, '\n').trim(), true);
         embed.setFooter('Scapie - Last Update: ' + data.update.update + ' by ' + data.update.updateBy, 'https://alexisio.github.com/Runescape/images/logos/Scapie_Flat.png');
         return embed;
     };
