@@ -6,17 +6,17 @@ function VoS() {
     var space = ' ';
     var linebreak = '\n';
 
-    this.usage = '!vos';
-    this.examples = ['!vos']
+    this.usage = '!vos [<details>]';
+    this.examples = ['!vos', '!vos details']
     this.alias = [];
-    this.description = 'Get the current Voice of Seren';
+    this.description = 'Get the current Voice of Seren. Optional to add details';
     this.type = 'skilling';
     this.enabled = true;
     this.run = function (bot, message, suffix) {
         return new Promise(function (resolve, reject) {
             var apiRequest = '/api/scapers/skilling/vos';
             utilities.request.api(apiRequest).then(function (vos) {
-                resolve({command: 'vos', value: format(vos), sendType: utilities.sendType.EMBED});
+                resolve({command: 'vos', value: format(vos, suffix), sendType: utilities.sendType.EMBED});
             }).catch(function (err) {
                 reject(err);
             });
@@ -24,14 +24,13 @@ function VoS() {
     }
 
 
-    var format = function (data) {
+    var format = function (data, details) {
         var vos = '';
         for (var district in districts) {
             if (data.vos.includes(district)) {
                 vos += vos.length > 0 ? '-' + district : district;
             }
         }
-        console.log(vos);
 
         var embed = new Discord.RichEmbed();
         embed.setAuthor('Voice of Seren', 'http://vignette2.wikia.nocookie.net/runescape2/images/5/50/Seren_%28with_Eluned%29_chathead.png/revision/latest?cb=20151030153838', '');
@@ -39,21 +38,24 @@ function VoS() {
         var one = vos.split('-')[0];
         var two = vos.split('-')[1];
         embed.addField(utilities.markdown.bold('Active'), one + ' and ' + two, true);
-        var bonusOne = '';
-        districts[one].forEach(function (bonus) {
-            bonusOne += bonus + linebreak + linebreak;
-        });
-        var bonusTwo = '';
-        districts[two].forEach(function (bonus) {
-            bonusTwo += bonus + linebreak + linebreak;
-        });
-        var bonusAll = '';
-        districts['AllClans'].forEach(function (bonus) {
-            bonusAll += bonus + linebreak + linebreak;
-        });
-        embed.addField(utilities.markdown.bold(one + ' Effects'), bonusOne);
-        embed.addField(utilities.markdown.bold(two + ' Effects'), bonusTwo);
-        embed.addField(utilities.markdown.bold('Generic Effects'), bonusAll);
+        if (details.trim().length > 0) {
+            var bonusOne = '';
+            districts[one].forEach(function (bonus) {
+                bonusOne += bonus + linebreak + linebreak;
+            });
+            var bonusTwo = '';
+            districts[two].forEach(function (bonus) {
+                bonusTwo += bonus + linebreak + linebreak;
+            });
+            var bonusAll = '';
+            districts['AllClans'].forEach(function (bonus) {
+                bonusAll += bonus + linebreak + linebreak;
+            });
+
+            embed.addField(utilities.markdown.bold(one + ' Effects'), bonusOne);
+            embed.addField(utilities.markdown.bold(two + ' Effects'), bonusTwo);
+            embed.addField(utilities.markdown.bold('Generic Effects'), bonusAll);
+        }
 
         embed.setFooter('Scapie', 'https://alexisio.github.com/Runescape/images/logos/Scapie_Flat.png');
         return embed;

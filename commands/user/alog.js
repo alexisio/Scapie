@@ -23,10 +23,8 @@ function Alog() {
         name = name.replace(/ /g, '%20')
         return new Promise(function (resolve, reject) {
             utilities.request.api('/api/rs/player/events/' + name).then(function (events) {
-                console.log(events);
                 resolve({command: 'alog', value: format(bot, events), sendType: utilities.sendType.EMBED});
             }).catch(function (err) {
-                console.log(err);
                 reject({command: 'alog', value: 'Unable to find user\'s event log', sendType: utilities.sendType.STRING});
             });
         });
