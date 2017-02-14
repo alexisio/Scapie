@@ -1,7 +1,8 @@
 var Discord = require('discord.js'),
     Commands = require('./commands'),
     Settings = require('./configs/settings.json'),
-    bot = new Discord.Client();
+    bot = new Discord.Client(),
+    colors = require('colors');
 
 // bot login
 var token = Settings.auth.prodToken;
@@ -53,7 +54,9 @@ bot.on('message', function (msg) {
                     res.value.setColor('#4ac5df');
                 }
                 msg.channel[res.sendType](res.value);
+                console.log(res.command.green + ' executed successfully'.green);
             }).catch(function (err) {
+                console.log(res.command.red + ' failed'.red);
                 if (err.value && err.command) {
                     msg.channel[err.sendType](err.value);
                 }
