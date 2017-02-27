@@ -53,9 +53,7 @@ function Alog() {
         embed.addField(utilities.markdown.bold('Older'), second);
 
         embed.setFooter('Scapie', 'https://alexisio.github.com/Runescape/images/logos/Scapie_Flat.png');
-        var execDt = new Date();
-        var cache = execDt.getDate() + execDt.getYear() + execDt.getMinutes() + execDt.getMilliseconds();
-        var ava = 'https://secure.runescape.com/m=avatar-rs/' + data.username.trim().replace(/ /g, '%20') + '/chat.png?v=' + cache;
+        var ava = 'https://secure.runescape.com/m=avatar-rs/' + data.username.trim().replace(/ /g, '%20') + '/chat.png';
         embed.setThumbnail(ava);
         return embed;
     };
