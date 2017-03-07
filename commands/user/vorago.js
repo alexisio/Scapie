@@ -39,7 +39,10 @@ function Vorago() {
         var normalData = utilities.markdown.bold(rotation.rotation.normal);
         if (!future) {
             var s = utilities.dateToString(new Date(next.startDate));
-            normalData += ' until reset on ' + utilities.markdown.bold(s) + linebreak +
+            var nextStart = new Date(next.startDate);
+            nextStart.setHours(0,0,0,0);
+            var hms = msToHMS(Math.abs(nextStart - new Date()));
+            normalData += ' for another **' + hms.hours + 'h ' + hms.minutes + 'm ' + hms.seconds + 's**' + linebreak +
                 utilities.markdown.bold(next.rotation.normal) + ' will follow';
         }
         else {
