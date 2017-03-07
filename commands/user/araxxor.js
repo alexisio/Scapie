@@ -43,7 +43,11 @@ function Araxxor() {
             'Closed: ' + utilities.markdown.bold(rotation.rotation.closed.characteristic);
         if (!future) {
             var s = utilities.dateToString(new Date(next.startDate));
-            currentData += linebreak + 'Until: ' + utilities.markdown.bold(s);
+            var nextStart = new Date(next.startDate);
+            nextStart.setHours(0,0,0,0);
+            var hms = msToHMS(Math.abs(nextStart - new Date()))
+            currentData += linebreak + 'Until: ' + utilities.markdown.bold(s) + ' (' +
+                        hms.hours + ' hours ' + hms.minutes + ' minutes ' + hms.seconds + ' seconds)';
 
             var nextData = 'Open: ' + utilities.markdown.bold(next.rotation.open[0].characteristic) + ' and ' + utilities.markdown.bold(next.rotation.open[1].characteristic) + linebreak +
                 'Closed: ' + utilities.markdown.bold(next.rotation.closed.characteristic);
@@ -60,6 +64,13 @@ function Araxxor() {
 
         return embed;
     };
+
+    var msToHMS = function(ms) {
+        var seconds=Math.floor((ms/1000)%60);
+        var minutes=Math.floor((ms/(1000*60))%60);
+        var hours=Math.floor((ms/(1000*60*60))%24);
+        return {hours: hours, minutes: minutes, seconds: seconds};
+    }
 }
 
 module.exports = new Araxxor();

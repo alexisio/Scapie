@@ -58,6 +58,13 @@ function Vorago() {
 
         return embed;
     };
+
+    var msToHMS = function(ms) {
+        var seconds=Math.floor((ms/1000)%60);
+        var minutes=Math.floor((ms/(1000*60))%60);
+        var hours=Math.floor((ms/(1000*60*60))%24);
+        return {hours: hours, minutes: minutes, seconds: seconds};
+    }
 }
 
 module.exports = new Vorago();

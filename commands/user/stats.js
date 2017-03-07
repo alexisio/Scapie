@@ -126,6 +126,30 @@ function Stats() {
         return embed;
     };
 
+    var virtualLevel = [
+        {exp: 14391160, level: 100},
+        {exp: 15889109, level: 101},
+        {exp: 17542976, level: 102},
+        {exp: 19368992, level: 103},
+        {exp: 21385073, level: 104},
+        {exp: 23611006, level: 105},
+        {exp: 26068632, level: 106},
+        {exp: 28782069, level: 107},
+        {exp: 31777943, level: 108},
+        {exp: 35085654, level: 109},
+        {exp: 38737661, level: 110},
+        {exp: 42769801, level: 111},
+        {exp: 47221641, level: 112},
+        {exp: 52136869, level: 113},
+        {exp: 57563718, level: 114},
+        {exp: 63555443, level: 115},
+        {exp: 70170840, level: 116},
+        {exp: 77474828, level: 117},
+        {exp: 85539082, level: 118},
+        {exp: 94442737, level: 119},
+        {exp: 104273167, level: 120}
+    ];
+
     var skillAlias = {
         'att': 'attack',
         'def': 'defence',
