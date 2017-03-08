@@ -45,8 +45,8 @@ function Araxxor() {
             var s = utilities.dateToString(new Date(next.startDate));
             var nextStart = new Date(next.startDate);
             nextStart.setHours(0,0,0,0);
-            var hms = msToHMS(Math.abs(nextStart - new Date()));
-            currentData += linebreak + 'For: **' + hms.hours + 'h ' + hms.minutes + 'm ' + hms.seconds + 's**';
+            var dhms = msToDHMS(Math.abs(nextStart - new Date()));
+            currentData += linebreak + 'For: **' + dhms.days + 'd ' + dhms.hours + 'h ' + dhms.minutes + 'm ' + dhms.seconds + 's**';
 
             var nextData = 'Open: ' + utilities.markdown.bold(next.rotation.open[0].characteristic) + ' and ' + utilities.markdown.bold(next.rotation.open[1].characteristic) + linebreak +
                 'Closed: ' + utilities.markdown.bold(next.rotation.closed.characteristic);
@@ -64,11 +64,12 @@ function Araxxor() {
         return embed;
     };
 
-    var msToHMS = function(ms) {
+    var msToDHMS = function(ms) {
         var seconds=Math.floor((ms/1000)%60);
         var minutes=Math.floor((ms/(1000*60))%60);
         var hours=Math.floor((ms/(1000*60*60))%24);
-        return {hours: hours, minutes: minutes, seconds: seconds};
+        var days = Math.floor((ms/1000) / (24*60*60));
+        return {days: days, hours: hours, minutes: minutes, seconds: seconds};
     }
 }
 

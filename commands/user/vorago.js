@@ -41,8 +41,8 @@ function Vorago() {
             var s = utilities.dateToString(new Date(next.startDate));
             var nextStart = new Date(next.startDate);
             nextStart.setHours(0,0,0,0);
-            var hms = msToHMS(Math.abs(nextStart - new Date()));
-            normalData += ' for another **' + hms.hours + 'h ' + hms.minutes + 'm ' + hms.seconds + 's**' + linebreak +
+            var dhms = msToDHMS(Math.abs(nextStart - new Date()));
+            normalData += ' for another **' + dhms.days + 'd ' + dhms.hours + 'h ' + dhms.minutes + 'm ' + dhms.seconds + 's**' + linebreak +
                 utilities.markdown.bold(next.rotation.normal) + ' will follow';
         }
         else {
@@ -62,11 +62,12 @@ function Vorago() {
         return embed;
     };
 
-    var msToHMS = function(ms) {
+    var msToDHMS = function(ms) {
         var seconds=Math.floor((ms/1000)%60);
         var minutes=Math.floor((ms/(1000*60))%60);
         var hours=Math.floor((ms/(1000*60*60))%24);
-        return {hours: hours, minutes: minutes, seconds: seconds};
+        var days = Math.floor((ms/1000) / (24*60*60));
+        return {days: days, hours: hours, minutes: minutes, seconds: seconds};
     }
 }
 
