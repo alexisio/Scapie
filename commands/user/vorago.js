@@ -41,7 +41,7 @@ function Vorago() {
             var s = utilities.dateToString(new Date(next.startDate));
             var nextStart = new Date(next.startDate);
             nextStart.setHours(0,0,0,0);
-            var dhms = msToDHMS(Math.abs(nextStart - new Date()));
+            var dhms = utilities.msToDHMS(Math.abs(nextStart - new Date()));
             normalData += ' for another **' + dhms.days + 'd ' + dhms.hours + 'h ' + dhms.minutes + 'm ' + dhms.seconds + 's**' + linebreak +
                 utilities.markdown.bold(next.rotation.normal) + ' will follow';
         }

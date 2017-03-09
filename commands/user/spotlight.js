@@ -51,7 +51,10 @@ function Spotlight() {
         var currentData = utilities.markdown.bold(current.rotation);
         if (!future && ! specific) {
             var s = utilities.dateToString(new Date(next.startDate));
-            currentData += ' will be on Spotlight until reset on ' + utilities.markdown.bold(s) + linebreak +
+            var nextStart = new Date(next.startDate);
+            nextStart.setHours(0,0,0,0);
+            var dhms = utilities.msToDHMS(Math.abs(nextStart - new Date()));
+            currentData += ' will be on Spotlight for another **' + dhms.days + 'd ' + dhms.hours + 'h ' + dhms.minutes + 'm ' + dhms.seconds + 's**' + linebreak +
                 utilities.markdown.bold(next.rotation) + ' will follow';
             embed.addField(utilities.markdown.bold('Rotation'), currentData, true);
         }
@@ -69,6 +72,7 @@ function Spotlight() {
 
         return embed;
     };
+
 
     var minigameAlias = {
         'pc': 'pest control',

@@ -45,7 +45,7 @@ function Araxxor() {
             var s = utilities.dateToString(new Date(next.startDate));
             var nextStart = new Date(next.startDate);
             nextStart.setHours(0,0,0,0);
-            var dhms = msToDHMS(Math.abs(nextStart - new Date()));
+            var dhms = utilities.msToDHMS(Math.abs(nextStart - new Date()));
             currentData += linebreak + 'For: **' + dhms.days + 'd ' + dhms.hours + 'h ' + dhms.minutes + 'm ' + dhms.seconds + 's**';
 
             var nextData = 'Open: ' + utilities.markdown.bold(next.rotation.open[0].characteristic) + ' and ' + utilities.markdown.bold(next.rotation.open[1].characteristic) + linebreak +
