@@ -16,7 +16,7 @@ bot.on('ready', function () {
     console.log('I am ready');
 });
 
-bot.on('guildCreate', function(guild) {
+bot.on('guildCreate', function (guild) {
     console.log(guild);
 })
 
@@ -25,11 +25,14 @@ bot.on('message', function (msg) {
     if (message.startsWith('!')) {
         // permissions
         var user = msg.author;
-        var permissions = msg.channel.permissionsFor(user);
-        var canManage = permissions.hasPermission('MANAGE_CHANNELS', true);
 
-        // get the guild making the request and load their config
-        var guildId = msg.guild.id;
+        if (msg.channel.type == 'text') {
+            var permissions = msg.channel.permissionsFor(user);
+            var canManage = permissions.hasPermission('MANAGE_CHANNELS', true);
+
+            // get the guild making the request and load their config
+            var guildId = msg.guild.id;
+        }
 
         // get command input
         var endOfLine = message.indexOf(' ');
@@ -53,7 +56,20 @@ bot.on('message', function (msg) {
                 if (res.sendType == 'sendEmbed') {
                     res.value.setColor('#4ac5df');
                 }
-                msg.channel[res.sendType](res.value);
+                if (res.isDM) {
+                    if (msg.member) {
+                        msg.member[res.sendType](res.value);
+                    }
+                    else {
+                        msg.channel[res.sendType](res.value);
+                    }
+                    if (msg.channel.type == 'text') {
+                        msg.channel.sendMessage(msg.member + ' check your DM\'s');
+                    }
+                }
+                else {
+                    msg.channel[res.sendType](res.value);
+                }
                 console.log(res.command.green + ' executed successfully'.green);
             }).catch(function (err) {
                 console.log(res.command.red + ' failed'.red);
@@ -70,15 +86,15 @@ bot.on('message', function (msg) {
 
 setInterval(function () {
     var list = [
-        { status: 'online', game: { name: 'with Araxxor' } },
-        { status: 'online', game: { name: 'with the Barrows Bros' } },
-        { status: 'online', game: { name: 'with Yakamaru' } },
-        { status: 'online', game: { name: 'with Telos' } },
-        { status: 'online', game: { name: 'with Nex' } },
-        { status: 'online', game: { name: 'with the Angel of Death' } },
-        { status: 'online', game: { name: 'Heist' } },
-        { status: 'online', game: { name: 'Castle Wars' } },
-        { status: 'online', game: { name: 'in the Max Guild' } }
+        {status: 'online', game: {name: 'with Araxxor'}},
+        {status: 'online', game: {name: 'with the Barrows Bros'}},
+        {status: 'online', game: {name: 'with Yakamaru'}},
+        {status: 'online', game: {name: 'with Telos'}},
+        {status: 'online', game: {name: 'with Nex'}},
+        {status: 'online', game: {name: 'with the Angel of Death'}},
+        {status: 'online', game: {name: 'Heist'}},
+        {status: 'online', game: {name: 'Castle Wars'}},
+        {status: 'online', game: {name: 'in the Max Guild'}}
     ];
     var index = Math.floor(Math.random() * list.length);
     var presence = list[index];

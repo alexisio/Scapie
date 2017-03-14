@@ -10,7 +10,9 @@ var stats = require('./stats'),
     alog = require('./alog'),
     price = require('./price'),
     calc = require('./calc'),
-    news = require('./news');
+    news = require('./news'),
+    uptime = require('./uptime'),
+    ping = require('./ping');
 
 function User() {
     this.stats = stats;
@@ -26,6 +28,8 @@ function User() {
     this.price = price;
     this.calc = calc;
     this.news = news;
+    this.uptime = uptime;
+    this.ping = ping;
 }
 
 module.exports = new User();

@@ -6,8 +6,8 @@ function Stats() {
     var space = ' ';
     var linebreak = '\n';
 
-    this.usage = '!stats <username>[, <skill>]';
-    this.examples = ['!stats Sync', '!stats Sync, prayer']
+    this.usage = '!stats <username> [#<skill>]';
+    this.examples = ['!stats Sync', '!stats Sync #prayer']
     this.alias = ['hiscores'];
     this.description = 'Get a user\'s stats';
     this.type = 'lookup';
