@@ -13,7 +13,8 @@ var stats = require('./stats'),
     news = require('./news'),
     uptime = require('./uptime'),
     ping = require('./ping'),
-    player = require('./player');
+    player = require('./player'),
+    perk = require('./perk');
 
 function User() {
     this.stats = stats;
@@ -32,6 +33,7 @@ function User() {
     this.uptime = uptime;
     this.ping = ping;
     this.player = player;
+    this.perk = perk;
 }
 
 module.exports = new User();
