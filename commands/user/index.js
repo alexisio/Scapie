@@ -14,7 +14,8 @@ var stats = require('./stats'),
     uptime = require('./uptime'),
     ping = require('./ping'),
     player = require('./player'),
-    perk = require('./perk');
+    perk = require('./perk'),
+    randomizer = require('./randomizer');
 
 function User() {
     this.stats = stats;
@@ -34,6 +35,7 @@ function User() {
     this.ping = ping;
     this.player = player;
     this.perk = perk;
+    this.randomizer = randomizer;
 }
 
 module.exports = new User();
