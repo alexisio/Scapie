@@ -38,6 +38,7 @@ function User() {
     this.randomizer = randomizer;
     this.setrsn = require('./setRSN');
     this.verify = require('./verify');
+    this.me = require('./me');
 }
 
 module.exports = new User();
