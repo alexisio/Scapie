@@ -9,6 +9,7 @@ function Utilities() {
     this.markdown = markdown;
     this.sendType = sendType;
     this.request = request;
+    this.httpMethod = require('./httpMethod');
     this.dateToString = function (date) {
         var start = new Date(date);
         return monthNames[start.getMonth()] + ' ' + start.getDate() + ' ' + start.getFullYear();

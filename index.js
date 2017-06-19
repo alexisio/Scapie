@@ -53,24 +53,26 @@ bot.on('message', function (msg) {
 
         if (command && command.enabled) {
             command.run(bot, msg, suffix).then(function (res) {
-                if (res.sendType == 'sendEmbed') {
-                    res.value.setColor('#4ac5df');
-                }
-                if (res.isDM) {
-                    if (msg.member) {
-                        msg.member[res.sendType](res.value);
+                if (typeof res !== 'undefined') {
+                    if (res.sendType == 'sendEmbed') {
+                        res.value.setColor('#4ac5df');
+                    }
+                    if (res.isDM) {
+                        if (msg.member) {
+                            msg.member[res.sendType](res.value);
+                        }
+                        else {
+                            msg.channel[res.sendType](res.value);
+                        }
+                        if (msg.channel.type == 'text') {
+                            msg.channel.sendMessage(msg.member + ' check your DM\'s');
+                        }
                     }
                     else {
                         msg.channel[res.sendType](res.value);
                     }
-                    if (msg.channel.type == 'text') {
-                        msg.channel.sendMessage(msg.member + ' check your DM\'s');
-                    }
+                    console.log(res.command.green + ' executed successfully'.green);
                 }
-                else {
-                    msg.channel[res.sendType](res.value);
-                }
-                console.log(res.command.green + ' executed successfully'.green);
             }).catch(function (err) {
                 console.log(res.command.red + ' failed'.red);
                 if (err.value && err.command) {

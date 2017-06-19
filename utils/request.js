@@ -8,12 +8,20 @@ var apiRoot = Settings.api.prod;
 if (process.env.NODE_ENV === 'development') {
     apiRoot = Settings.api.dev;
 }
-Request.prototype.api = function (url) {
+Request.prototype.api = function (url, method, form) {
     return new Promise(function (resolve, reject) {
-        request({
+        if (typeof method == 'undefined') {
+            method = 'GET';
+        }
+        var options = {
+            method: method.toUpperCase(),
             url: apiRoot + url,
             json: true
-        }, function (error, response, json) {
+        };
+        if (typeof form !== 'undefined') {
+            options.form = form;
+        }
+        request(options, function (error, response, json) {
             if (error) {
                 reject(error);
                 return;
