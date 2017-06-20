@@ -36,7 +36,7 @@ function User() {
     this.player = player;
     this.perk = perk;
     this.randomizer = randomizer;
-    this.setrsn = require('./setRSN');
+    this.set = require('./set');
     this.verify = require('./verify');
     this.me = require('./me');
 }
