@@ -10,6 +10,7 @@ if (process.env.NODE_ENV === 'development') {
 }
 Request.prototype.api = function (url, method, form) {
     return new Promise(function (resolve, reject) {
+        console.log('hit da api');
         if (typeof method == 'undefined') {
             method = 'GET';
         }
@@ -21,6 +22,7 @@ Request.prototype.api = function (url, method, form) {
         if (typeof form !== 'undefined') {
             options.form = form;
         }
+        console.log('requesting:', options.url);
         request(options, function (error, response, json) {
             if (error) {
                 reject(error);

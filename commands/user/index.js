@@ -1,21 +1,21 @@
-var stats = require('./stats'),
-    vorago = require('./vorago'),
-    rots = require('./rots'),
-    araxxor = require('./araxxor'),
-    viswax = require('./viswax'),
-    warbands = require('./warbands'),
-    spotlight = require('./spotlight'),
-    vos = require('./vos'),
-    portables = require('./portables'),
-    alog = require('./alog'),
-    price = require('./price'),
-    calc = require('./calc'),
-    news = require('./news'),
+var stats = require('./rs/stats'),
+    vorago = require('./rs/vorago'),
+    rots = require('./rs/rots'),
+    araxxor = require('./rs/araxxor'),
+    viswax = require('./rs/viswax'),
+    warbands = require('./rs/warbands'),
+    spotlight = require('./rs/spotlight'),
+    vos = require('./rs/vos'),
+    portables = require('./rs/portables'),
+    alog = require('./rs/alog'),
+    price = require('./rs/price'),
+    calc = require('./misc/calc'),
+    news = require('./rs/news'),
     uptime = require('./uptime'),
     ping = require('./ping'),
-    player = require('./player'),
-    perk = require('./perk'),
-    randomizer = require('./randomizer');
+    player = require('./rs/player'),
+    perk = require('./rs/perk'),
+    randomizer = require('./misc/randomizer');
 
 function User() {
     this.stats = stats;
@@ -36,9 +36,11 @@ function User() {
     this.player = player;
     this.perk = perk;
     this.randomizer = randomizer;
-    this.set = require('./set');
-    this.verify = require('./verify');
-    this.me = require('./me');
+    this.set = require('./auth/set');
+    this.verify = require('./auth/verify');
+    this.me = require('./auth/me');
+    this.members = require('./clan/members');
+    this.update = require('./clan/update');
 }
 
 module.exports = new User();

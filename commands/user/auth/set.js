@@ -1,6 +1,6 @@
 var Discord = require('discord.js'),
     numeral = require('numeral'),
-    utilities = require('./../../utils');
+    utilities = require('./../../../utils/index');
 
 function SetRSN() {
     var space = ' ';
@@ -20,8 +20,6 @@ function SetRSN() {
             var main;
             suffix = suffix.trim().substring(cmd.length, suffix.length);
             main = suffix.trim();
-            console.log(cmd);
-            console.log(suffix);
             var update = false;
             if (suffix.includes('>')) {
                 var sepIndex = suffix.indexOf('>');
@@ -40,7 +38,11 @@ function SetRSN() {
                         utilities.request.api('/api/scapers/players', utilities.httpMethod.POST, player).then(function (player) {
                             resolve({command: 'set rsn', value: formatRSN(player), sendType: utilities.sendType.EMBED});
                         }).catch(function (err) {
-                            reject({command: 'news', value: 'Unable to set RSN', sendType: utilities.sendType.STRING});
+                            reject({
+                                command: 'set rsn',
+                                value: 'Unable to set RSN',
+                                sendType: utilities.sendType.STRING
+                            });
                         });
                     }
                     else {
@@ -86,6 +88,10 @@ function SetRSN() {
         else {
             embed.setDescription(clan.message);
         }
+        utilities.request.api('/api/scapers/players/stats/guild/' + guild.id, utilities.httpMethod.PUT).then(function(stats) {
+           console.log('got stats', stats[0]);
+        });
+        console.log('returning');
         return embed;
     };
 

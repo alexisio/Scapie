@@ -1,6 +1,6 @@
 var Discord = require('discord.js'),
     numeral = require('numeral'),
-    utilities = require('./../../utils');
+    utilities = require('./../../../utils/index');
 
 function Perk() {
     var space = ' ';

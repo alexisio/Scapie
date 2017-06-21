@@ -1,5 +1,5 @@
 var Discord = require('discord.js'),
-    utilities = require('./../../utils');
+    utilities = require('./../../../utils/index');
 
 function Araxxor() {
     var space = ' ';
