@@ -13,24 +13,26 @@ function Update() {
         return new Promise(function (resolve, reject) {
             if (message.channel.type == 'text') {
                 var cmd = suffix.trim().split(' ')[0];
+                var clan;
                 suffix = suffix.trim().substring(cmd.length, suffix.length).trim();
+                clan = suffix;
                 var mod;
                 if (suffix.includes('#')) {
                     var sepIndex = suffix.indexOf('#');
-                    suffix = suffix.substring(0, sepIndex).trim();
+                    clan = suffix.substring(0, sepIndex).trim();
                     mod = suffix.substring(sepIndex + 1, suffix.length).trim();
                 }
                 switch (cmd.toLowerCase()) {
                     case 'clan':
                         message.channel.sendMessage('Please wait...update speeds are limited by Jagex\'s API timeout threshold so depending on the number of players in the clan, an update may take a while. There are 3 steps to an update and a message will be posted with each update completion.');
                         // call member check
-                        utilities.request.api('/api/scapers/clans/' + suffix + '/members', utilities.httpMethod.PUT).then(function (members) {
+                        utilities.request.api('/api/scapers/clans/' + clan + '/members', utilities.httpMethod.PUT).then(function (members) {
                             if (members) {
                                 message.channel.sendMessage('Step 1 complete. Step 2 is the longest step. Please be patient...');
-                                utilities.request.api('/api/scapers/players/stats/clan/' + suffix, utilities.httpMethod.PUT).then(function (stats) {
+                                utilities.request.api('/api/scapers/players/stats/clan/' + clan, utilities.httpMethod.PUT).then(function (stats) {
                                     if (stats) {
                                         message.channel.sendMessage('Step 2 complete.');
-                                        utilities.request.api('/api/scapers/players/names/clan/' + suffix, utilities.httpMethod.PUT).then(function (names) {
+                                        utilities.request.api('/api/scapers/players/names/clan/' + clan, utilities.httpMethod.PUT).then(function (names) {
                                             if (names) {
                                                 resolve({
                                                     command: 'update clan',
@@ -38,16 +40,15 @@ function Update() {
                                                     sendType: utilities.sendType.EMBED
                                                 });
                                             }
-                                        })
+                                        });
                                     }
                                 })
                             }
                         });
                         break;
                     case 'logs': {
-                        var apiPath = '/api/scapers/clanlogs/' + suffix;
+                        var apiPath = '/api/scapers/clanlogs/' + clan;
                         if (mod && mod.length > 0) {
-                            console.log(mod);
                             apiPath += '/' + mod;
                         }
                         utilities.request.api(apiPath).then(function (logs) {
@@ -78,24 +79,36 @@ function Update() {
                 isChange = true;
                 var changeLog = '';
                 changes.changed.forEach(function (change) {
-                    changeLog += utilities.markdown.bold(change.from.display) + ' changed name to ' + utilities.markdown.bold(change.to.display);
+                    changeLog += utilities.toTitle(utilities.markdown.bold(change.from.display)) + ' changed name to ' + utilities.toTitle(utilities.markdown.bold(change.to.display));
                 });
+                if (changeLog.length > 1024) {
+                    changeLog = changeLog.substring(0, 1019);
+                    changeLog += '...';
+                }
                 embed.addField('Name Changes', changeLog);
             }
             if (changes.added.length > 0) {
                 isChange = true;
                 var additionLog = '';
                 changes.added.forEach(function (a) {
-                    additionLog += utilities.markdown.bold(a.display) + ' was added to the clan';
+                    additionLog += utilities.toTitle(a.display) + '\n';
                 });
+                if (additionLog.length > 1024) {
+                    additionLog = additionLog.substring(0, 1019);
+                    additionLog += '...';
+                }
                 embed.addField('Additions', additionLog);
             }
             if (changes.removed.length > 0) {
                 isChange = true;
                 var removedLog = '';
                 changes.removed.forEach(function (r) {
-                    removedLog += utilities.markdown.bold(r.display) + ' was removed from the clan';
+                    removedLog += utilities.toTitle(r.display)  + '\n';
                 });
+                if (removedLog.length > 1024) {
+                    removedLog = removedLog.substring(0, 1019);
+                    removedLog += '...';
+                }
                 embed.addField('Removals', removedLog);
             }
             if (!isChange) {
@@ -109,11 +122,10 @@ function Update() {
     };
 
     var formatLogs = function(logs) {
-        console.log(logs);
         var embed = new Discord.RichEmbed();
         embed.setAuthor('Recent Logs', '');
         logs.splice(0,24).forEach(function(log) {
-            embed.addField(log.type.toUpperCase() + ' - ' + log.createdAt, log.old + ' -> ' + log.new);
+            embed.addField(log.type.toUpperCase() + ' - ' + log.createdAt, log.old + ' -> ' + log.new.display);
         });
         return embed;
     }
