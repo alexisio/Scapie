@@ -79,7 +79,7 @@ function Update() {
                 isChange = true;
                 var changeLog = '';
                 changes.changed.forEach(function (change) {
-                    changeLog += utilities.toTitle(utilities.markdown.bold(change.from.display)) + ' changed name to ' + utilities.toTitle(utilities.markdown.bold(change.to.display));
+                    changeLog += utilities.toTitle(utilities.markdown.bold(change.from.display)) + ' changed name to ' + utilities.toTitle(utilities.markdown.bold(change.to.display)) + '\n';
                 });
                 if (changeLog.length > 1024) {
                     changeLog = changeLog.substring(0, 1019);
