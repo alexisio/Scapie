@@ -47,9 +47,17 @@ function Update() {
                         });
                         break;
                     case 'logs': {
-                        var apiPath = '/api/scapers/clanlogs/' + clan;
-                        if (mod && mod.length > 0) {
-                            apiPath += '/' + mod;
+                        var apiPath = '/api/scapers/clanlogs/';
+                        if ((!clan || clan.trim().length < 1) && (mod && mod.length > 0)) {
+                               apiPath += 'type/' + mod + '/';
+                        }
+                        else {
+                            if (clan && clan.length > 0) {
+                                apiPath += 'clan/' + clan + '/';
+                            }
+                            if (mod && mod.length > 0) {
+                                apiPath += mod + '/';
+                            }
                         }
                         utilities.request.api(apiPath).then(function (logs) {
                             if (logs) {
@@ -125,7 +133,9 @@ function Update() {
         var embed = new Discord.RichEmbed();
         embed.setAuthor('Recent Logs', '');
         logs.splice(0,24).forEach(function(log) {
-            embed.addField(log.type.toUpperCase() + ' - ' + log.createdAt, log.previous.display + ' -> ' + log.new.display);
+            var prev = log.previous && log.previous.display ? log.previous.display : '';
+            var n = log.new && log.new.display ? log.new.display : '';
+            embed.addField(log.type.toUpperCase() + ' - ' + log.createdAt, prev + ' -> ' + n);
         });
         return embed;
     }
