@@ -125,7 +125,7 @@ function Update() {
         var embed = new Discord.RichEmbed();
         embed.setAuthor('Recent Logs', '');
         logs.splice(0,24).forEach(function(log) {
-            embed.addField(log.type.toUpperCase() + ' - ' + log.createdAt, log.old.display + ' -> ' + log.new.display);
+            embed.addField(log.type.toUpperCase() + ' - ' + log.createdAt, log.previous.display + ' -> ' + log.new.display);
         });
         return embed;
     }
