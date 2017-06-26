@@ -40,7 +40,7 @@ function User() {
     this.verify = require('./auth/verify');
     this.me = require('./auth/me');
     this.members = require('./clan/members');
-    this.update = require('./clan/update');
+    this.activity = require('./clan/activity');
 }
 
 module.exports = new User();
