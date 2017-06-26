@@ -25,8 +25,10 @@ function Activity() {
                 console.log('mod',mod);
 
                 var apiPath = '/api/scapers/clanlogs/';
+                var prefixClan = false;
                 if ((!clan || clan.trim().length < 1) && (mod && mod.length > 0)) {
-                    apiPath += 'type/' + mod + '/';
+                    apiPath += 'events/' + mod + '/';
+                    //prefixClan = true; not implemented in API yet to work
                 }
                 else {
                     if (clan && clan.length > 0) {
@@ -41,7 +43,7 @@ function Activity() {
                     if (logs) {
                         resolve({
                             command: 'activity',
-                            value: formatLogs(logs),
+                            value: formatLogs(logs, prefixClan),
                             sendType: utilities.sendType.EMBED
                         });
                     }
@@ -105,7 +107,7 @@ function Activity() {
         return embed;
     };
 
-    var formatLogs = function (logs) {
+    var formatLogs = function (logs, prefixClan) {
         var embed = new Discord.RichEmbed();
         embed.setAuthor('Activity', '');
         embed.setDescription('Displaying the last 25 activity logs for the clan');
@@ -122,11 +124,12 @@ function Activity() {
                     case 'memberjoin', 'memberleft':
                         if (log.type == 'player') {
                             var lj = log.event == 'memberjoin' ? 'joined' : 'left';
+                            var pref = prefixClan ? utilities.markdown.underline(utilities.markdown.bold(log.new.clan.name)) + ' ' : '';
                             console.log('we in join/left');
-                            logStr += utilities.toTitle(utilities.markdown.bold(log.new.display)) + ' ' + lj + ' the clan';
+                            logStr += pref + utilities.toTitle(utilities.markdown.bold(log.new.display)) + ' ' + lj + ' the clan';
                             if (log.previous && log.previous.clan) {
-                                var ff = log.event == 'memberjoin' ? 'from' : 'for';
-                                logStr += ' ' + ff + ' ' + utilities.toTitle(utilities.markdown.bold(log.previous.clan.name));
+                                var ff = log.event == 'memberjoin' ? 'from ' + utilities.toTitle(utilities.markdown.bold(log.previous.clan.name)) : 'for ' + utilities.toTitle(utilities.markdown.bold(log.new.clan.name));
+                                logStr += ' ' + ff;
                             }
                             logStr += '\n';
                             strCount += logStr.length;
@@ -135,9 +138,8 @@ function Activity() {
                         break;
                     case 'rsnchange':
                         if (log.type == 'player') {
-                            console.log('new',log.new.display);
-                            console.log('old',log.previous.display);
-                            logStr += utilities.toTitle(utilities.markdown.bold(log.previous.display)) + ' changed their RSN to ' + utilities.toTitle(utilities.markdown.bold(log.new.display));
+                            var pref = prefixClan ? utilities.markdown.underline(utilities.markdown.bold(log.new.clan.name)) + ' ' : '';
+                            logStr += pref + utilities.toTitle(utilities.markdown.bold(log.previous.display)) + ' changed their RSN to ' + utilities.toTitle(utilities.markdown.bold(log.new.display));
                             logStr += '\n';
                             strCount += logStr.length;
                             logsStr += logStr;
