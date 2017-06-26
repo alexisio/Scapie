@@ -74,7 +74,7 @@ bot.on('message', function (msg) {
                     console.log(res.command.green + ' executed successfully'.green);
                 }
             }).catch(function (err) {
-                console.log(res.command.red + ' failed'.red);
+                console.log(err.command.red + ' failed'.red);
                 if (err.value && err.command) {
                     msg.channel[err.sendType](err.value);
                 }
