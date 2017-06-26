@@ -23,8 +23,10 @@ function Player() {
         name = name.replace(/ /g, '%20')
         return new Promise(function (resolve, reject) {
             utilities.request.api('/api/rs/player/details/' + name).then(function (details) {
+                console.log('we gud');
                 resolve({command: 'player', value: format(bot, details), sendType: utilities.sendType.EMBED});
             }).catch(function (err) {
+                console.log('naw');
                 reject({command: 'player', value: 'Unable to find user\'s player details', sendType: utilities.sendType.STRING});
             });
         });

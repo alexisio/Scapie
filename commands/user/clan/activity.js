@@ -122,6 +122,7 @@ function Activity() {
                     case 'memberjoin', 'memberleft':
                         if (log.type == 'player') {
                             var lj = log.event == 'memberjoin' ? 'joined' : 'left';
+                            console.log('we in join/left');
                             logStr += utilities.toTitle(utilities.markdown.bold(log.new.display)) + ' ' + lj + ' the clan';
                             if (log.previous && log.previous.clan) {
                                 var ff = log.event == 'memberjoin' ? 'from' : 'for';
@@ -134,7 +135,9 @@ function Activity() {
                         break;
                     case 'rsnchange':
                         if (log.type == 'player') {
-                            logStr += utilities.toTitle(utilities.markdown.bold(log.old.display)) + ' changed their RSN to ' + utilities.toTitle(utilities.markdown.bold(log.new.display));
+                            console.log('new',log.new.display);
+                            console.log('old',log.previous.display);
+                            logStr += utilities.toTitle(utilities.markdown.bold(log.previous.display)) + ' changed their RSN to ' + utilities.toTitle(utilities.markdown.bold(log.new.display));
                             logStr += '\n';
                             strCount += logStr.length;
                             logsStr += logStr;
