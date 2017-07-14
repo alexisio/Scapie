@@ -3,10 +3,9 @@ const path = require('path');
 const oneLine = require('common-tags').oneLine;
 const sqlite = require('sqlite');
 
-var token = require('./settings.json').auth.prodToken;
+var token = process.env.PROD_BOT_TOKEN;
 if (process.env.NODE_ENV === 'development') {
-    console.log('logging in with dev token');
-    token = require('./settings.json').auth.devToken;
+    token = process.env.DEV_BOT_TOKEN;
 }
 /* eslint-disable no-console */
 

@@ -75,3 +75,5 @@ mongod
 *.sln
 
 *.sqlite3
+
+.env
