@@ -12,7 +12,7 @@ if (process.env.NODE_ENV === 'development') {
 
 const client = new commando.Client({
     owner: ['102162505094172672','102199187063451648'],
-    commandPrefix: '^'
+    commandPrefix: '!'
 });
 
 client

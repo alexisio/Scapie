@@ -17,7 +17,7 @@ app.use(methodOverride('X-HTTP-Method-Override'));
 app.use(cors());
 
 // Set port
-const port = process.env.PORT || '8083';
+const port = process.env.PORT || '5000';
 app.set('port', port);
 
 app.use(require('./api')(app, config));

@@ -1,6 +1,0 @@
-{
-  "api": {
-    "prod": "http://localhost:8000",
-    "dev": "http://localhost:8000"
-  }
-}
