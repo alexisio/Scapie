@@ -35,11 +35,11 @@ module.exports = class ResetCommand extends Commando.Command {
     createEmbed(current, daily, weekly, monthly) {
         let embed = new RichEmbed()
             .setAuthor('Reset Information')
-            .setDescription(`The current game date is ${current.mdbold()}`)
+            .setDescription(`The current game date is ${current.toString().mdbold()}`)
             .setTimestamp()
-            .addField('Daily', `Daily reset is in ${daily.mdbold()}`)
-            .addField('Weekly', `Weekly reset is in ${weekly.mdbold()}`)
-            .addField('Monthly', `Monthly reset is in ${monthly.mdbold()}`)
+            .addField('Daily', `Daily reset is in ${daily.toString().mdbold()}`)
+            .addField('Weekly', `Weekly reset is in ${weekly.toString().mdbold()}`)
+            .addField('Monthly', `Monthly reset is in ${monthly.toString().mdbold()}`)
         return embed;
     }
 };
