@@ -63,7 +63,6 @@ module.exports = class StatsCommand extends Commando.Command {
     async run(message, args) {
         emojis = message.client.emojis;
         let username = args;
-        let stat = undefined;
 
         let api = `/api/players/${username}/details`;
         let profileApi = `/api/players/${username}/profile`;
@@ -71,11 +70,12 @@ module.exports = class StatsCommand extends Commando.Command {
         util.request.api(api).then(result => {
             util.request.api(profileApi).then(profile => {
                 this.createEmbed(result, profile).then(embed => {
+                    console.log('send message');
                     message.embed(embed);
                 });
             }).catch(err => {
                 this.createEmbed(result).then(embed => {
-                    message.embed(embed);
+                    return message.embed(embed);
                 });
                 console.log('err', err);
             })

@@ -79,7 +79,6 @@ module.exports = class StatsCommand extends Commando.Command {
     }
 
     createEmbed(result) {
-        console.log(emojis.find(item => item.name == 'Overall'));
         var ava = `https://secure.runescape.com/m=avatar-rs/'${result.username.trim().replace(/ /g, '%20')}/chat.png?timestamp=${new Date().getTime()}`;
         let embed = new RichEmbed()
             .setAuthor(`Stats for ${result.username.trim().toTitleCase()}`)
@@ -92,7 +91,6 @@ module.exports = class StatsCommand extends Commando.Command {
             let subset = skillTypes[skillType];
             let set = '';
             subset.skills.forEach(function (skill) {
-                //console.log(skill);//, emojis.find(item => item.name = skill.toTitleCase()));
                 let emoji = typeof emojis !== 'undefined' && typeof emojis.find(item => item.name == skill.toTitleCase()) !== 'undefined' ? emojis.find(item => item.name == skill.toTitleCase()) : skill.toTitleCase();
                 set += `${emoji} ${result.skills[skill].level.toString().toTitleCase().mdbold()} | ${result.skills[skill].exp.toLocaleString()} \n`;
             });

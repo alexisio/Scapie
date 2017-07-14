@@ -38,7 +38,7 @@ module.exports = class VoragoCommand extends Commando.Command {
         let embed = new RichEmbed()
             .setAuthor('Vorago Rotations')
             .setTimestamp()
-            .setThumbnail('https://vignette3.wikia.nocookie.net/runescape2/images/e/eb/Vorago.png/revision/latest/scale-to-width-down/250?cb=20130705143815')
+            .setThumbnail('')
             .addField('Rotation', `${result[0].rotation.normal.mdbold()} for another ${dhm.mdbold()}`)
             .addField('Hardmode', `East: ${result[0].rotation.hard.east.mdbold()}\nWest: ${result[0].rotation.hard.west.mdbold()}\nUnlock: ${result[0].rotation.hard.unlock.mdbold()}`);
         if (typeof prices !== 'undefined') {

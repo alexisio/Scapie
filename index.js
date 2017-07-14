@@ -12,7 +12,8 @@ if (process.env.NODE_ENV === 'development') {
 
 const client = new commando.Client({
     owner: ['102162505094172672','102199187063451648'],
-    commandPrefix: '!'
+    commandPrefix: '!',
+    unknownCommandResponse: false
 });
 
 client
@@ -52,6 +53,8 @@ client
 		`);
     })
     .on('commandRun', (command, promise, msg) => {
+        console.log('running a command');
+        msg.channel.startTyping();
         if (msg.guild) {
             console.log(`Command ran
         Guild: ${msg.guild.name} (${msg.guild.id})
@@ -67,6 +70,10 @@ client
         Command: ${command.groupID}:${command.memberName}
         Message: "${msg.content}"`)
         }
+        promise.then(res => {
+            console.log('complete so stop typing',res);
+            msg.channel.stopTyping();
+        })
     })
     .on('groupStatusChange', (guild, group, enabled) => {
         console.log(oneLine`
