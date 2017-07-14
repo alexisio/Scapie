@@ -2,7 +2,7 @@ var request = require('request');
 
 function Request() {
 }
-var apiRoot = 'http://localhost:5000';
+var apiRoot = `http://localhost:${process.env.PORT || '5000'}`;
 
 Request.prototype.api = function (url, method, form) {
     return new Promise(function (resolve, reject) {
