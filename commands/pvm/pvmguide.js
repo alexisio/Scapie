@@ -53,7 +53,7 @@ module.exports = class PvMGuideCommand extends Commando.Command {
                 }
                 else if (typeof boss[0].rotation.normal != 'undefined') {
                     embed.addField('Vorago', `${'Normal'.mdunderline()}\n${boss[0].rotation.normal.mdbold()}\n` +
-                        `${'Hardmode'.mdunderline()}\n${'East:'.mdbold()}\t\t${boss[0].rotation.hard.east}\n${'West:'.mdbold()}\t  ${boss[0].rotation.hard.west}\n${'Unlock:'.mdbold()}   ${boss[0].rotation.hard.unlock}\n` +
+                        `${'Hardmode'.mdunderline()}\n${'Phase 10:'.mdbold()}\t\t${boss[0].rotation.hard.phase10}\n${'Phase 11:'.mdbold()}\t  ${boss[0].rotation.hard.phase11}\n${'Unlock:'.mdbold()}   ${boss[0].rotation.hard.unlock}\n` +
                         `${'For:'.mdbold()} ${dhm}`)
                 }
                 else if (typeof boss[0].rotation.open != 'undefined') {

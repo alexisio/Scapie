@@ -40,7 +40,7 @@ module.exports = class VoragoCommand extends Commando.Command {
             .setTimestamp()
             .setThumbnail('')
             .addField('Rotation', `${result[0].rotation.normal.mdbold()} for another ${dhm.mdbold()}\n${result[1].rotation.normal.mdbold()} will follow`)
-            .addField('Hardmode', `East: ${result[0].rotation.hard.east.mdbold()}\nWest: ${result[0].rotation.hard.west.mdbold()}\nUnlock: ${result[0].rotation.hard.unlock.mdbold()}`);
+            .addField('Hardmode', `Phase 10: ${result[0].rotation.hard.phase10.mdbold()}\nPhase 11: ${result[0].rotation.hard.phase11.mdbold()}\nUnlock: ${result[0].rotation.hard.unlock.mdbold()}`);
         if (typeof prices !== 'undefined') {
             let field = '';
             prices.forEach(item => {
