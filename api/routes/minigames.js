@@ -57,5 +57,13 @@ module.exports = function (jwtCheck, adminCheck) {
         });
     });
 
+    router.get('/circus',(req, res) => {
+        rsapi.rs.distraction.circus.getRotation().then(circus => {
+            return res.send(circus);
+        }).catch(err => {
+            return res.status(404).send({message: err.message});
+        });
+    });
+
     return router;
 };
