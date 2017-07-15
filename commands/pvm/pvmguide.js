@@ -53,12 +53,12 @@ module.exports = class PvMGuideCommand extends Commando.Command {
                 }
                 else if (typeof boss[0].rotation.normal != 'undefined') {
                     embed.addField('Vorago', `${'Normal'.mdunderline()}\n${boss[0].rotation.normal.mdbold()}\n` +
-                        `${'Hardmode'.mdunderline()}\n${'Phase 10:'.mdbold()}\t\t${boss[0].rotation.hard.phase10}\n${'Phase 11:'.mdbold()}\t  ${boss[0].rotation.hard.phase11}\n${'Unlock:'.mdbold()}   ${boss[0].rotation.hard.unlock}\n` +
+                        `${'Hardmode'.mdunderline()}\n${'Phase 10:'.mdbold()} ${boss[0].rotation.hard.phase10}\n${'Phase 11:'.mdbold()} ${boss[0].rotation.hard.phase11}\n${'Unlock:'.mdbold()} ${boss[0].rotation.hard.unlock}\n` +
                         `${'For:'.mdbold()} ${dhm}`)
                 }
                 else if (typeof boss[0].rotation.open != 'undefined') {
-                    embed.addField('Araxxor', `${'Open:'.mdbold()}\t   ${boss[0].rotation.open[0].characteristic} and ${boss[0].rotation.open[1].characteristic}\n` +
-                                              `${'Closed:'.mdbold()}\t ${boss[0].rotation.closed.characteristic}\n${'For:'.mdbold()} ${dhm}`)
+                    embed.addField('Araxxor', `${'Open:'.mdbold()} ${boss[0].rotation.open[0].characteristic} and ${boss[0].rotation.open[1].characteristic}\n` +
+                                              `${'Closed:'.mdbold()} ${boss[0].rotation.closed.characteristic}\n${'For:'.mdbold()} ${dhm}`)
                 }
             });
 
