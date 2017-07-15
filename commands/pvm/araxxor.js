@@ -40,7 +40,7 @@ module.exports = class AraxxorCommand extends Commando.Command {
             .setThumbnail('https://vignette1.wikia.nocookie.net/runescape2/images/f/f2/Araxxor.png/revision/latest/scale-to-width-down/250?cb=20140729225744')
             .setTimestamp()
             .addField('Current', `Open: ${result[0].rotation.open[0].characteristic.mdbold()} and ${result[0].rotation.open[1].characteristic.mdbold()}\nClosed: ${result[0].rotation.closed.characteristic.mdbold()}\nFor: ${dhm.mdbold()}`)
-            .addField('Next', `Open: ${result[0].rotation.open[0].characteristic.mdbold()} and ${result[1].rotation.open[1].characteristic.mdbold()}\nClosed: ${result[1].rotation.closed.characteristic.mdbold()}`)
+            .addField('Next', `Open: ${result[1].rotation.open[0].characteristic.mdbold()} and ${result[1].rotation.open[1].characteristic.mdbold()}\nClosed: ${result[1].rotation.closed.characteristic.mdbold()}`)
         if (typeof prices !== 'undefined') {
             let field = '';
             prices.forEach(item => {
