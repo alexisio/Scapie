@@ -82,7 +82,7 @@ module.exports = class TrackerCommand extends Commando.Command {
     constructor(client) {
         super(client, {
             name: 'tracker',
-            aliases: ['gains', 'gainz'],
+            aliases: ['gains', 'gainz', 'track', 'gain'],
             group: 'player',
             memberName: 'tracker',
             description: 'Get daily XP gains via the Scapers platform',
@@ -115,9 +115,7 @@ module.exports = class TrackerCommand extends Commando.Command {
             .setTimestamp();
         this.delta(snapshot, stats).then(change => {
             embed.setAuthor(`${stats.username.trim().toTitleCase()}'s XP Today`)
-                .setDescription(`${ typeof emojis !== 'undefined' && typeof emojis.find(item => item.name == 'overall'.toTitleCase()) !== 'undefined' ? emojis.find(item => item.name == 'overall'.toTitleCase()) : 'overall'.toTitleCase()} ${change['overall'].level.toLocaleString().mdbold()}\n` +
-                    `${ typeof emojis !== 'undefined' && typeof emojis.find(item => item.name == 'xp'.toTitleCase()) !== 'undefined' ? emojis.find(item => item.name == 'xp'.toTitleCase()) : 'xp'.toTitleCase()} ${change['overall'].exp.toLocaleString()}\n` +
-                    `${ typeof emojis !== 'undefined' && typeof emojis.find(item => item.name == 'rank'.toTitleCase()) !== 'undefined' ? emojis.find(item => item.name == 'rank'.toTitleCase()) : 'rank'.toTitleCase()} ${change['overall'].rank.toLocaleString()}`)
+                .setDescription(`${ typeof emojis !== 'undefined' && typeof emojis.find(item => item.name == 'overall'.toTitleCase()) !== 'undefined' ? emojis.find(item => item.name == 'overall'.toTitleCase()) : 'overall'.toTitleCase()} ${change['overall'].exp.toLocaleString().mdbold()}\n`)
             for (let skillType in skillTypes) {
                 let subset = skillTypes[skillType];
                 let set = '';
