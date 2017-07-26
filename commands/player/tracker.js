@@ -94,7 +94,7 @@ module.exports = class TrackerCommand extends Commando.Command {
         emojis = message.client.emojis;
         let username = args;
 
-        let remoteApi = `${process.env.SCAPERS}/api/snapshots/player/${username}/recent`;
+        let remoteApi = `${process.env.SCAPERS}/api/snapshots/player/${username.toLowerCase()}/recent`;
         let api = `/api/players/${username}/stats`;
 
         util.request.remoteApi(remoteApi).then(snapshot => {

@@ -66,25 +66,42 @@ module.exports = class StatsCommand extends Commando.Command {
 
         let api = `/api/players/${username}/details`;
         let profileApi = `/api/players/${username}/profile`;
+        await this.getScapersProfile(username).then(sprof => {
+            console.log(sprof);
+            util.request.api(api).then(result => {
+                util.request.api(profileApi).then(profile => {
 
-        util.request.api(api).then(result => {
-            util.request.api(profileApi).then(profile => {
-                this.createEmbed(result, profile).then(embed => {
-                    console.log('send message');
-                    message.embed(embed);
-                });
+                    this.createEmbed(result, profile, sprof).then(embed => {
+                        message.embed(embed);
+                    });
+                }).catch(err => {
+                    this.createEmbed(result, undefined, sprof).then(embed => {
+                        return message.embed(embed);
+                    });
+                    console.log('err', err);
+                })
             }).catch(err => {
-                this.createEmbed(result).then(embed => {
-                    return message.embed(embed);
-                });
                 console.log('err', err);
-            })
-        }).catch(err => {
-            console.log('err', err);
+            });
         });
     }
 
-    async createEmbed(result, profile) {
+    async getScapersProfile(name) {
+        return new Promise((resolve) => {
+            const api = `${process.env.SCAPERS}/api/players/${name}`;
+            console.log(api);
+            util.request.remoteApi(`${api}`).then((prof) => {
+                console.log(`found so return`);
+                resolve(prof);
+            }).catch((err) => {
+                console.log('err');
+                resolve(undefined);
+            })
+        });
+    }
+
+    async createEmbed(result, profile, sprof) {
+        console.log(sprof);
         const p = result[0];
         var ava = `https://secure.runescape.com/m=avatar-rs/'${p.name.trim().replace(/ /g, '%20')}/chat.png?timestamp=${new Date().getTime()}`;
         let embed = new RichEmbed()
@@ -103,6 +120,12 @@ module.exports = class StatsCommand extends Commando.Command {
                     s += `${activity.text.toLowerCase().indexOf('levelled') > -1 ? activity.details : activity.text}\n`
                 });
                 embed.addField('Recent Achievements', s, false);
+            }
+        }
+        if (typeof sprof !== 'undefined') {
+            console.log('do u have dirt');
+            if (sprof.previousDisplay.length > 0) {
+                embed.addField('Previous Names', sprof.previousDisplay.toString());
             }
         }
         return embed;

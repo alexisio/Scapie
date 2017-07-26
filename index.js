@@ -94,6 +94,7 @@ client.registry
     .registerGroup('game', 'Game Information')
     .registerGroup('community', 'Community Information')
     .registerGroup('misc', 'Miscellaneous')
+    .registerGroup('clan', 'Clan')
     .registerDefaults()
     .registerCommandsIn(path.join(__dirname, 'commands'));
 
