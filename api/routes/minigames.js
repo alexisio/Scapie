@@ -1,7 +1,8 @@
 const express = require('express'),
     router = express.Router(),
     rsapi = require('rs-api'),
-    moment = require('moment');
+    moment = require('moment'),
+    utils = require('./../../utils');
 
 module.exports = function (jwtCheck, adminCheck) {
     router.get('/spotlight', (req, res) => {
@@ -49,7 +50,7 @@ module.exports = function (jwtCheck, adminCheck) {
         });
     });
 
-    router.get('/viswax',(req, res) => {
+    router.get('/viswax', (req, res) => {
         rsapi.rs.distraction.viswax.getCurrent().then(vis => {
             return res.send(vis);
         }).catch(err => {
@@ -57,9 +58,17 @@ module.exports = function (jwtCheck, adminCheck) {
         });
     });
 
-    router.get('/circus',(req, res) => {
+    router.get('/circus', (req, res) => {
         rsapi.rs.distraction.circus.getRotation().then(circus => {
             return res.send(circus);
+        }).catch(err => {
+            return res.status(404).send({message: err.message});
+        });
+    });
+
+    router.get('/raven', (req, res) => {
+        rsapi.rs.distraction.raven.getCurrent().then(raven => {
+            return res.send(raven);
         }).catch(err => {
             return res.status(404).send({message: err.message});
         });
