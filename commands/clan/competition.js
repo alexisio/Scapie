@@ -17,10 +17,10 @@ module.exports = class CompetitionCommand extends Commando.Command {
 
     async run(message, args) {
         const clan = 'maximized';
-        util.request.remoteApi(`${process.env.SCAPERS}/api/competitions/clan/${clan}/inprogress`).then(competition => {
+        util.request.remoteApi(`${process.env.SCAPERS}/api/competitions/clan/${clan}`).then(competition => {
             if (competition) {
-                util.request.remoteApi(`${process.env.SCAPERS}/api/competitions/${competition._id}/standings`).then(standings => {
-                    message.embed(this.createEmbed(clan, competition, standings));
+                util.request.remoteApi(`${process.env.SCAPERS}/api/competitions/${competition[0]._id}/standings`).then(standings => {
+                    message.embed(this.createEmbed(clan, competition[0], standings));
                 });
             }
             else {
@@ -28,6 +28,7 @@ module.exports = class CompetitionCommand extends Commando.Command {
             }
         }).catch(err => {
             console.log('err', err);
+            message.reply('No inprogress competition');
         });
     }
 
@@ -35,8 +36,10 @@ module.exports = class CompetitionCommand extends Commando.Command {
         let embed = new RichEmbed()
             .setAuthor(`${competition.name.toTitleCase()}`, ``)
             //.setTimestamp()
-            .setFooter(`Last Update: ${new Date(competition.lastUpdate)}`)
+            .setFooter(`Last Update: ${new Date(competition.lastUpdate).toLocaleString()}`)
             .setThumbnail(`http://services.runescape.com/m=avatar-rs/${clan}/clanmotif.png`)
+            .setTitle('View on SCAPERS')
+            .setURL(`https://scapers.herokuapp.com/competitions/${competition._id}`)
         let standingsStr = '';
         const gains = this.flattenArray(standings);
         const skill = competition.skills[0].toLowerCase().trim();
