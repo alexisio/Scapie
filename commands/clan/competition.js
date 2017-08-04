@@ -17,10 +17,10 @@ module.exports = class CompetitionCommand extends Commando.Command {
 
     async run(message, args) {
         const clan = 'maximized';
-        util.request.remoteApi(`${process.env.SCAPERS}/api/competitions/clan/${clan}`).then(competition => {
+        util.request.remoteApi(`${process.env.SCAPERS}/api/competitions/clan/${clan}/inprogress`).then(competition => {
             if (competition) {
-                util.request.remoteApi(`${process.env.SCAPERS}/api/competitions/${competition[0]._id}/standings`).then(standings => {
-                    message.embed(this.createEmbed(clan, competition[0], standings));
+                util.request.remoteApi(`${process.env.SCAPERS}/api/competitions/${competition._id}/standings`).then(standings => {
+                    message.embed(this.createEmbed(clan, competition, standings));
                 });
             }
             else {
