@@ -25,11 +25,11 @@ module.exports = class NemiCommand extends Commando.Command {
 
     createEmbed(result) {
         const post = result.data.children[0];
-        console.log(post.data);
+        const flair = post.data.link_flair_text;
         let embed = new RichEmbed()
             .setAuthor(post.data.author, ``)
             .setTimestamp()
-            .setDescription(`${typeof post.data.link_flair_text !== 'undefined' ? post.data.link_flair_text.mdbold().toUpperCase() + ' ': ''}${post.data.title}`)
+            .setDescription(`${flair !== null ? post.data.link_flair_text.mdbold().toUpperCase() + ' ': ''}${post.data.title}`)
             .setImage(`${post.data.preview.images[0].source.url}`)
         return embed;
     }
