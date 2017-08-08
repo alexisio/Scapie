@@ -29,7 +29,7 @@ module.exports = class NemiCommand extends Commando.Command {
         let embed = new RichEmbed()
             .setAuthor(post.data.author, ``)
             .setTimestamp()
-            .setDescription(`${post.data.link_flair_text.mdbold().toUpperCase()} ${post.data.title}`)
+            .setDescription(`${typeof post.data.link_flair_text !== 'undefined' ? post.data.link_flair_text.mdbold().toUpperCase() + ' ': ''}${post.data.title}`)
             .setImage(`${post.data.preview.images[0].source.url}`)
         return embed;
     }
