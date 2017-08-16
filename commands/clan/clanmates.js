@@ -17,7 +17,8 @@ module.exports = class ClanmatesCommand extends Commando.Command {
 
     async run(message, args) {
         let clan = args;
-        if (typeof clan === 'undefined') clan = 'maximized';
+        if (typeof clan === 'undefined' || clan.trim().length <= 0) clan = 'maximized';
+        console.log(clan);
         util.request.remoteApi(`${process.env.SCAPERS}/api/clans/${clan}/members`).then(result => {
             message.embed(this.createEmbed(clan, result));
         }).catch(err => {
