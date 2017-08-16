@@ -16,7 +16,8 @@ module.exports = class ClanmatesCommand extends Commando.Command {
     }
 
     async run(message, args) {
-        const clan = args;
+        let clan = args;
+        if (typeof clan === 'undefined') clan = 'maximized';
         util.request.remoteApi(`${process.env.SCAPERS}/api/clans/${clan}/members`).then(result => {
             message.embed(this.createEmbed(clan, result));
         }).catch(err => {
@@ -32,7 +33,7 @@ module.exports = class ClanmatesCommand extends Commando.Command {
         let members = '';
         result.sortBy('display');
         result.forEach((member) => {
-            members += `${member.clanRank} ${member.display.toTitleCase().mdbold()}\n`
+            members += `${member.display.toTitleCase().mdbold()} [${member.clanRank}]\n`
         });
         embed.setDescription( members);
         return embed;
