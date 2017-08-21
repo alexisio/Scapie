@@ -55,8 +55,10 @@ module.exports = class CompetitionCommand extends Commando.Command {
         let flattened = [];
         standings.forEach(standing => {
            let flat = standing.stats;
-           flat['display'] = standing.player.display.toTitleCase();
-           flattened.push(flat);
+           flat['display'] = standing.player ? standing.player.display.toTitleCase() : null;
+           if (flat.display !== null) {
+               flattened.push(flat);
+           }
         });
         return flattened;
     }
