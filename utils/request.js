@@ -41,12 +41,20 @@ Request.prototype.api = function (url, method, form) {
     });
 };
 
-Request.prototype.remoteApi = function(url) {
+Request.prototype.remoteApi = function (url, method, form) {
     return new Promise(function (resolve, reject) {
-        request({
+        if (typeof method == 'undefined') {
+            method = 'GET';
+        }
+        var options = {
+            method: method.toUpperCase(),
             url: url,
             json: true
-        }, function (error, response, json) {
+        };
+        if (typeof form !== 'undefined') {
+            options.form = form;
+        }
+        request(options, function (error, response, json) {
             if (error) {
                 reject(error);
                 return;
