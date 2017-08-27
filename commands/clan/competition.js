@@ -45,7 +45,7 @@ module.exports = class CompetitionCommand extends Commando.Command {
         const skill = competition.skills[0].toLowerCase().trim();
         gains.sortExpBySkill(`-${skill}`);
         gains.forEach((standing, i) => {
-            standingsStr += standing.display ? `${i + 1}) ${standing.display.toTitleCase().mdbold()} has gained ${standing[skill].exp.toLocaleString().mdbold()} XP\n` : '';
+            standingsStr += standing.display ? `${i + 1}) ${standing.display.toTitleCase().mdbold()} has gained ${standing[skill].exp ? standing[skill].exp.toLocaleString().mdbold() : '0'} XP\n` : '';
         });
         embed.setDescription(standingsStr);
         return embed;
