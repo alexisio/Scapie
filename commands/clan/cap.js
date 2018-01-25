@@ -41,7 +41,7 @@ module.exports = class CapCommand extends Commando.Command {
             .setAuthor(cap.clan.name.toTitleCase(), ``)
             .setTimestamp();
             //.setThumbnail(`http://services.runescape.com/m=avatar-rs/${clan}/clanmotif.png`)
-        embed.setDescription(`Cap recored for ${cap.player.display.mdbold()} (full: ${cap.full})`);
+        embed.setDescription(`Cap recorded for ${cap.player.display.mdbold()} (full: ${cap.full})`);
         return embed;
     }
 };
