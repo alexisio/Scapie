@@ -40,7 +40,7 @@ module.exports = class CompetitionCommand extends Commando.Command {
             .setThumbnail(`http://services.runescape.com/m=avatar-rs/${clan}/clanmotif.png`)
             .setTitle('View on SCAPERS')
             .setURL(`https://scapers.herokuapp.com/competitions/${competition._id}`)
-        let standingsStr = '';
+        let standingsStr = `Runs ${competition.startDate} through ${competition.endDate}`;
         const gains = this.flattenArray(standings);
         const skill = competition.skills[0].toLowerCase().trim();
         gains.sortExpBySkill(`-${skill}`);
