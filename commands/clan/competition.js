@@ -36,7 +36,7 @@ module.exports = class CompetitionCommand extends Commando.Command {
         let embed = new RichEmbed()
             .setAuthor(`${competition.name.toTitleCase()}`, ``)
             //.setTimestamp()
-            .setFooter(`Start Date: ${new Date(competition.startDate).toLocaleString()}\nEnd Date: ${new Date(competition.endDate).toLocaleString()}\nLast Update: ${new Date(competition.lastUpdate).toLocaleString()}`)
+            .setFooter()
             .setThumbnail(`http://services.runescape.com/m=avatar-rs/${clan}/clanmotif.png`)
             .setTitle('View on SCAPERS')
             .setURL(`https://scapers.herokuapp.com/competitions/${competition._id}`)
@@ -47,6 +47,10 @@ module.exports = class CompetitionCommand extends Commando.Command {
         gains.forEach((standing, i) => {
             standingsStr += standing.display ? `${i + 1}) ${standing.display.toTitleCase().mdbold()} has gained ${standing[skill].exp ? standing[skill].exp.toLocaleString().mdbold() : '0'} XP\n` : '';
         });        
+        standingsStr += `Start Date: ${new Date(competition.startDate).toLocaleString()}\n` + 
+                        `End Date: ${new Date(competition.endDate).toLocaleString()}\n` +
+                        `Last Update: ${new Date(competition.lastUpdate).toLocaleString()}\n` +
+                        `Times are displayed in game time`
         embed.setDescription(standingsStr);
         return embed;
     }
