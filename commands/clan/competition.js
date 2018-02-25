@@ -36,17 +36,17 @@ module.exports = class CompetitionCommand extends Commando.Command {
         let embed = new RichEmbed()
             .setAuthor(`${competition.name.toTitleCase()}`, ``)
             //.setTimestamp()
-            .setFooter(`Last Update: ${new Date(competition.lastUpdate).toLocaleString()}`)
+            .setFooter(`Start Date: ${new Date(competition.startDate).toLocaleString()}\nEnd Date: ${new Date(competition.endDate).toLocaleString()}\nLast Update: ${new Date(competition.lastUpdate).toLocaleString()}`)
             .setThumbnail(`http://services.runescape.com/m=avatar-rs/${clan}/clanmotif.png`)
             .setTitle('View on SCAPERS')
             .setURL(`https://scapers.herokuapp.com/competitions/${competition._id}`)
-        let standingsStr = `Runs ${competition.startDate} through ${competition.endDate}`;
+        let standingsStr = '';
         const gains = this.flattenArray(standings);
         const skill = competition.skills[0].toLowerCase().trim();
         gains.sortExpBySkill(`-${skill}`);
         gains.forEach((standing, i) => {
             standingsStr += standing.display ? `${i + 1}) ${standing.display.toTitleCase().mdbold()} has gained ${standing[skill].exp ? standing[skill].exp.toLocaleString().mdbold() : '0'} XP\n` : '';
-        });
+        });        
         embed.setDescription(standingsStr);
         return embed;
     }
