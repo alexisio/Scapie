@@ -33,24 +33,22 @@ module.exports = class CompetitionCommand extends Commando.Command {
     }
 
     createEmbed(clan, competition, standings) {
+        const duration = moment.duration((new Date(competition.endDate) - new Date(competition.startDate))*1000, 'milliseconds');
         let embed = new RichEmbed()
             .setAuthor(`${competition.name.toTitleCase()}`, ``)
             //.setTimestamp()
-            //.setFooter()
+            .setFooter(`Last Update: ${new Date(competition.lastUpdate).toLocaleString()} || Time Remaining ${duration}`)
             .setThumbnail(`http://services.runescape.com/m=avatar-rs/${clan}/clanmotif.png`)
             .setTitle('View on SCAPERS')
             .setURL(`https://scapers.herokuapp.com/competitions/${competition._id}`)
         let standingsStr = '';
         const gains = this.flattenArray(standings);
-        const skill = competition.skills[0].toLowerCase().trim();
+        const skill = competition.skills[0].toLowerCase().trim();        
+        
         gains.sortExpBySkill(`-${skill}`);
         gains.forEach((standing, i) => {
             standingsStr += standing.display ? `${i + 1}) ${standing.display.toTitleCase().mdbold()} has gained ${standing[skill].exp ? standing[skill].exp.toLocaleString().mdbold() : '0'} XP\n` : '';
-        });        
-        standingsStr += `\n\nStart Date: ${new Date(competition.startDate).toLocaleString()}\n` + 
-                        `End Date: ${new Date(competition.endDate).toLocaleString()}\n` +
-                        `Last Update: ${new Date(competition.lastUpdate).toLocaleString()}\n` +
-                        `Times are displayed in game time`
+        });
         embed.setDescription(standingsStr);
         return embed;
     }
