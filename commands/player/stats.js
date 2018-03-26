@@ -92,15 +92,15 @@ module.exports = class StatsCommand extends Commando.Command {
         }
         else {
             embed.setAuthor(`Stats for ${result.name.trim().toTitleCase()}`)
-                .setDescription(`${ typeof emojis !== 'undefined' && typeof emojis.find(item => item.name == 'overall'.toTitleCase()) !== 'undefined' ? emojis.find(item => item.name == 'overall'.toTitleCase()) : 'overall'.toTitleCase()} ${result.skills['overall'].level.toLocaleString().mdbold()}\n` +
-                    `${ typeof emojis !== 'undefined' && typeof emojis.find(item => item.name == 'xp'.toTitleCase()) !== 'undefined' ? emojis.find(item => item.name == 'xp'.toTitleCase()) : 'xp'.toTitleCase()} ${result.skills['overall'].exp.toLocaleString()}\n` +
-                    `${ typeof emojis !== 'undefined' && typeof emojis.find(item => item.name == 'rank'.toTitleCase()) !== 'undefined' ? emojis.find(item => item.name == 'rank'.toTitleCase()) : 'rank'.toTitleCase()} ${result.skills['overall'].rank.toLocaleString()}`)
+                .setDescription(`${ typeof emojis !== 'undefined' && typeof emojis.find(item => item.name == 'overall'.toTitleCase()) !== 'undefined' ? emojis.find(item => item.name == 'overall'.toTitleCase()) : 'overall'.toTitleCase()} ${result.stats['overall'].level.toLocaleString().mdbold()}\n` +
+                    `${ typeof emojis !== 'undefined' && typeof emojis.find(item => item.name == 'xp'.toTitleCase()) !== 'undefined' ? emojis.find(item => item.name == 'xp'.toTitleCase()) : 'xp'.toTitleCase()} ${result.stats['overall'].exp.toLocaleString()}\n` +
+                    `${ typeof emojis !== 'undefined' && typeof emojis.find(item => item.name == 'rank'.toTitleCase()) !== 'undefined' ? emojis.find(item => item.name == 'rank'.toTitleCase()) : 'rank'.toTitleCase()} ${result.stats['overall'].rank.toLocaleString()}`)
             for (let skillType in skillTypes) {
                 let subset = skillTypes[skillType];
                 let set = '';
                 subset.skills.forEach(function (skill) {
                     let emoji = typeof emojis !== 'undefined' && typeof emojis.find(item => item.name == skill.toTitleCase()) !== 'undefined' ? emojis.find(item => item.name == skill.toTitleCase()) : skill.toTitleCase();
-                    set += `${emoji} ${result.skills[skill].level.toString().toTitleCase().mdbold()} | ${result.skills[skill].exp.toLocaleString()} \n`;
+                    set += `${emoji} ${result.stats[skill].level.toString().toTitleCase().mdbold()} | ${result.stats[skill].exp.toLocaleString()} \n`;
                 });
                 skillType = skillType.toTitleCase();
                 embed.addField(skillType, set, true);
