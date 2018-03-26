@@ -84,7 +84,7 @@ module.exports = class StatsCommand extends Commando.Command {
         let embed = new RichEmbed()
             .setThumbnail(ava)
             .setTimestamp()
-        if (typeof result.skills === 'undefined') {
+        if (typeof result.stats === 'undefined') {
             embed.setAuthor(`${result.skill.toTitleCase()} hiscore for ${result.name.trim().toTitleCase()}`)
             embed.setDescription(`${ typeof emojis !== 'undefined' && typeof emojis.find(item => item.name == result.skill.toTitleCase()) !== 'undefined' ? emojis.find(item => item.name == result.skill.toTitleCase()) : 'overall'.toTitleCase()} ${result.detail.level.toLocaleString().mdbold()}\n` +
                 `${ typeof emojis !== 'undefined' && typeof emojis.find(item => item.name == 'xp'.toTitleCase()) !== 'undefined' ? emojis.find(item => item.name == 'xp'.toTitleCase()) : 'xp'.toTitleCase()} ${result.detail.exp.toLocaleString()}\n` +
