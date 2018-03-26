@@ -80,18 +80,18 @@ module.exports = class StatsCommand extends Commando.Command {
     }
 
     createEmbed(result) {
-        var ava = `https://secure.runescape.com/m=avatar-rs/'${result.username.trim().replace(/ /g, '%20')}/chat.png?timestamp=${new Date().getTime()}`;
+        var ava = `https://secure.runescape.com/m=avatar-rs/'${result.name.trim().replace(/ /g, '%20')}/chat.png?timestamp=${new Date().getTime()}`;
         let embed = new RichEmbed()
             .setThumbnail(ava)
             .setTimestamp()
         if (typeof result.skills === 'undefined') {
-            embed.setAuthor(`${result.skill.toTitleCase()} hiscore for ${result.username.trim().toTitleCase()}`)
+            embed.setAuthor(`${result.skill.toTitleCase()} hiscore for ${result.name.trim().toTitleCase()}`)
             embed.setDescription(`${ typeof emojis !== 'undefined' && typeof emojis.find(item => item.name == result.skill.toTitleCase()) !== 'undefined' ? emojis.find(item => item.name == result.skill.toTitleCase()) : 'overall'.toTitleCase()} ${result.detail.level.toLocaleString().mdbold()}\n` +
                 `${ typeof emojis !== 'undefined' && typeof emojis.find(item => item.name == 'xp'.toTitleCase()) !== 'undefined' ? emojis.find(item => item.name == 'xp'.toTitleCase()) : 'xp'.toTitleCase()} ${result.detail.exp.toLocaleString()}\n` +
                 `${ typeof emojis !== 'undefined' && typeof emojis.find(item => item.name == 'rank'.toTitleCase()) !== 'undefined' ? emojis.find(item => item.name == 'rank'.toTitleCase()) : 'rank'.toTitleCase()} ${result.detail.rank.toLocaleString()}`)
         }
         else {
-            embed.setAuthor(`Stats for ${result.username.trim().toTitleCase()}`)
+            embed.setAuthor(`Stats for ${result.name.trim().toTitleCase()}`)
                 .setDescription(`${ typeof emojis !== 'undefined' && typeof emojis.find(item => item.name == 'overall'.toTitleCase()) !== 'undefined' ? emojis.find(item => item.name == 'overall'.toTitleCase()) : 'overall'.toTitleCase()} ${result.skills['overall'].level.toLocaleString().mdbold()}\n` +
                     `${ typeof emojis !== 'undefined' && typeof emojis.find(item => item.name == 'xp'.toTitleCase()) !== 'undefined' ? emojis.find(item => item.name == 'xp'.toTitleCase()) : 'xp'.toTitleCase()} ${result.skills['overall'].exp.toLocaleString()}\n` +
                     `${ typeof emojis !== 'undefined' && typeof emojis.find(item => item.name == 'rank'.toTitleCase()) !== 'undefined' ? emojis.find(item => item.name == 'rank'.toTitleCase()) : 'rank'.toTitleCase()} ${result.skills['overall'].rank.toLocaleString()}`)
