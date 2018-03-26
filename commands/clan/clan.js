@@ -36,7 +36,7 @@ module.exports = class ClanCommand extends Commando.Command {
         let embed = new RichEmbed()
             .setAuthor(name.toTitleCase(), ``)
             .setTimestamp()
-            .setThumbnail(`http://services.runescape.com/m=avatar-rs/${name}/clanmotif.png`);
+            .setThumbnail(`http://services.runescape.com/m=avatar-rs/${name.replace(/ /g, '%20')}/clanmotif.png`);
         let xpCount = 0;
         for (let i in members) {
             let member = members[i];
