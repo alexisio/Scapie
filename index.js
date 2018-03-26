@@ -8,7 +8,6 @@ if (process.env.NODE_ENV === 'development') {
     token = process.env.DEV_BOT_TOKEN;
 }
 
-token = 'MjcxODgwNDU2OTAxNzU0ODgw.DZr_-Q.enTZMObPyb6saTC-rLN7XmSm8SY';
 /* eslint-disable no-console */
 
 
