@@ -109,12 +109,12 @@ module.exports = class TrackerCommand extends Commando.Command {
     }
 
     async createEmbed(snapshot, stats) {
-        let ava = `https://secure.runescape.com/m=avatar-rs/'${stats.username.trim().replace(/ /g, '%20')}/chat.png?timestamp=${new Date().getTime()}`;
+        let ava = `https://secure.runescape.com/m=avatar-rs/'${stats.name.trim().replace(/ /g, '%20')}/chat.png?timestamp=${new Date().getTime()}`;
         let embed = new RichEmbed()
             .setThumbnail(ava)
             .setTimestamp();
         this.delta(snapshot, stats).then(change => {
-            embed.setAuthor(`${stats.username.trim().toTitleCase()}'s XP Today`)
+            embed.setAuthor(`${stats.name.trim().toTitleCase()}'s XP Today`)
                 .setDescription(`${ typeof emojis !== 'undefined' && typeof emojis.find(item => item.name == 'overall'.toTitleCase()) !== 'undefined' ? emojis.find(item => item.name == 'overall'.toTitleCase()) : 'overall'.toTitleCase()} ${change['overall'].exp.toLocaleString().mdbold()}\n`)
             for (let skillType in skillTypes) {
                 let subset = skillTypes[skillType];
