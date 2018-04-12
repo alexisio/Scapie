@@ -119,7 +119,7 @@ module.exports = class TrackerCommand extends Commando.Command {
             for (let skillType in skillTypes) {
                 let subset = skillTypes[skillType];
                 let set = '';
-                subset.skills.forEach(function (skill) {
+                subset.stats.forEach(function (skill) {
                     let emoji = typeof emojis !== 'undefined' && typeof emojis.find(item => item.name == skill.toTitleCase()) !== 'undefined' ? emojis.find(item => item.name == skill.toTitleCase()) : skill.toTitleCase();
                     set += `${emoji} ${change[skill].exp.toLocaleString()} \n`;
                 });
@@ -134,9 +134,9 @@ module.exports = class TrackerCommand extends Commando.Command {
         let change = {};
         for (var i = 0; i < skills.length; i++) {
             let name = skills[i].toLowerCase();
-            let rankChange = current.skills[name].rank - snapshot.stats.skills[name].rank;
-            let levelChange = current.skills[name].level - snapshot.stats.skills[name].level;
-            let expChange = current.skills[name].exp - snapshot.stats.skills[name].exp;
+            let rankChange = current.stats[name].rank - snapshot.stats.skills[name].rank;
+            let levelChange = current.stats[name].level - snapshot.stats.skills[name].level;
+            let expChange = current.stats[name].exp - snapshot.stats.skills[name].exp;
             change[name] = {
                 rank: Number(rankChange),
                 level: Number(levelChange),
