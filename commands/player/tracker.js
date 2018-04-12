@@ -119,7 +119,7 @@ module.exports = class TrackerCommand extends Commando.Command {
             for (let skillType in skillTypes) {
                 let subset = skillTypes[skillType];
                 let set = '';
-                subset.stats.forEach(function (skill) {
+                subset.skills.forEach(function (skill) {
                     let emoji = typeof emojis !== 'undefined' && typeof emojis.find(item => item.name == skill.toTitleCase()) !== 'undefined' ? emojis.find(item => item.name == skill.toTitleCase()) : skill.toTitleCase();
                     set += `${emoji} ${change[skill].exp.toLocaleString()} \n`;
                 });
