@@ -26,7 +26,7 @@ module.exports = function(jwtCheck, adminCheck) {
                 let obj = {};
                 obj['username'] = username;
                 obj['skill'] = lookup;
-                obj['detail'] = stats.skills[lookup];
+                obj['detail'] = stats.stats[lookup];
                 return res.send(obj);
             }).catch(function(err) {
                 return res.status(404).send({message: err.message});
