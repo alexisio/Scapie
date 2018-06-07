@@ -41,14 +41,13 @@ module.exports = class CluesCommand extends Commando.Command {
             .setTimestamp()
             .setThumbnail(ava)
             .setDescription(
-                `${"Easy:".bold()} ${hiscores.activities.easy_clue_scrolls.score}\n` +
-                `${"Medium:".bold()} ${hiscores.activities.medium_clue_scrolls.score}\n` +
-                `${"Hard:".bold()} ${hiscores.activities.hard_clue_scrolls.score}\n` +
-                `${"Elite:".bold()} ${hiscores.activities.elite_clue_scrolls.score}\n` +
-                `${"Master:".bold()} ${hiscores.activities.master_clue_scrolls.score}`
-            )
+                `${"Easy:"} ${hiscores.activities.easy_clue_scrolls.score}\n` +
+                `${"Medium:"} ${hiscores.activities.medium_clue_scrolls.score}\n` +
+                `${"Hard:"} ${hiscores.activities.hard_clue_scrolls.score}\n` +
+                `${"Elite:"} ${hiscores.activities.elite_clue_scrolls.score}\n` +
+                `${"Master:"} ${hiscores.activities.master_clue_scrolls.score}`
+            );
 
         return embed;
     }
-
 };
