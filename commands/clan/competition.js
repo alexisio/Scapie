@@ -38,7 +38,7 @@ module.exports = class CompetitionCommand extends Commando.Command {
         let embed = new RichEmbed()
             .setAuthor(`${competition.name.toTitleCase()}`, ``)
             //.setTimestamp()
-            .setFooter(`Last Update: ${new Date(competition.lastUpdate).toLocaleString()} || Time Remaining ${duration}`)
+            .setFooter(`Last Update: ${new Date(competition.lastUpdate).toLocaleString()} || ${duration} remaining`)
             .setThumbnail(`http://services.runescape.com/m=avatar-rs/${clan}/clanmotif.png`)
             .setTitle('View on SCAPERS')
             .setURL(`https://scapers.herokuapp.com/competitions/${competition._id}`)
