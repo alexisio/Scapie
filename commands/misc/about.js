@@ -29,7 +29,7 @@ module.exports = class AboutCommand extends Commando.Command {
             .addField('Bot Stats',
                 `Guild Count: ${Object.keys(this.client.guilds).length}\n` +
                 `Ping: ${this.client.ping}\n` +
-                `Uptime: ${Math.round(moment.duration(this.client.uptime, 'milliseconds').asHours() * 100) / 100} hours`,
+                `Uptime: ${moment.duration(this.client.uptime, 'milliseconds').asHours().toFixed(3)} hours`,
                 false);
         return embed;
     }
