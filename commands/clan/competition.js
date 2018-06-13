@@ -34,11 +34,11 @@ module.exports = class CompetitionCommand extends Commando.Command {
 
     createEmbed(clan, competition, standings) {
         const m = moment.duration((new Date(competition.endDate) - new Date()), 'milliseconds');
-        const duration = `${m.asHours().toFixed(0)}h ${m.asMinutes()}m ${m.asSeconds()}s`;
+        const duration = `${m.hours()}h ${m.minutes()}m ${m.seconds()}s`;
         let embed = new RichEmbed()
             .setAuthor(`${competition.name.toTitleCase()}`, ``)
             //.setTimestamp()
-            .setFooter(`Last Update: ${new Date(competition.lastUpdate).toLocaleString()} || Time Remaining ${duration} hours`)
+            .setFooter(`Last Update: ${new Date(competition.lastUpdate).toLocaleString()} || Time Remaining ${duration}`)
             .setThumbnail(`http://services.runescape.com/m=avatar-rs/${clan}/clanmotif.png`)
             .setTitle('View on SCAPERS')
             .setURL(`https://scapers.herokuapp.com/competitions/${competition._id}`)
