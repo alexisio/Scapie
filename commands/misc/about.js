@@ -22,13 +22,14 @@ module.exports = class AboutCommand extends Commando.Command {
     }
 
     async createEmbed() {
+        console.log(this.client.guilds);
         let embed = new RichEmbed()
             .setTimestamp()
             .setAuthor('Scapie')
             .setDescription('Scapie is a discord bot that interacts with both the RuneScape API and the Scapers Clan Tracking Platform API. Scapers currently only supports the RuneScape clan Maximized.')
             .addField('Bot Stats',
-                `Guild Count: ${this.client.guilds.length}` +
-                `Ping: ${this.client.ping}` +
+                `Guild Count: ${this.client.guilds.length}\n` +
+                `Ping: ${this.client.ping}\n` +
                 `Uptime: ${moment.duration(this.client.uptime, 'milliseconds').asHours()}`,
                 false);
         return embed;
