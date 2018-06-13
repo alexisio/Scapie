@@ -27,9 +27,9 @@ module.exports = class AboutCommand extends Commando.Command {
             .setAuthor('Scapie')
             .setDescription('Scapie is a discord bot that interacts with both the RuneScape API and the Scapers Clan Tracking Platform API. Scapers currently only supports the RuneScape clan Maximized.')
             .addField('Bot Stats',
-                `Guild Count: ${client.guilds.length}` +
-                `Ping: ${client.ping}` +
-                `Uptime: ${moment.duration(client.uptime, 'milliseconds').asHours()}`,
+                `Guild Count: ${this.client.guilds.length}` +
+                `Ping: ${this.client.ping}` +
+                `Uptime: ${moment.duration(this.client.uptime, 'milliseconds').asHours()}`,
                 false);
         return embed;
     }
