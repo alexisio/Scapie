@@ -34,7 +34,7 @@ module.exports = class CompetitionCommand extends Commando.Command {
 
     createEmbed(clan, competition, standings) {
         const m = moment.duration((new Date(competition.endDate) - new Date()), 'milliseconds');
-        const duration = `${m.hours()}h ${m.minutes()}m ${m.seconds()}s`;
+        const duration = `${m.days()}d ${m.hours()}h ${m.minutes()}m ${m.seconds()}s`;
         let embed = new RichEmbed()
             .setAuthor(`${competition.name.toTitleCase()}`, ``)
             //.setTimestamp()
