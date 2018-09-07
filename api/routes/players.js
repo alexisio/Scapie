@@ -24,7 +24,7 @@ module.exports = function(jwtCheck, adminCheck) {
             rsapi.rs.player.hiscores(username).then(function(stats) {
                 let lookup = typeof skillAlias[stat] !== 'undefined' ? skillAlias[stat] : stat;
                 let obj = {};
-                obj['username'] = username;
+                obj['name'] = username;
                 obj['skill'] = lookup;
                 obj['detail'] = stats.stats[lookup];
                 return res.send(obj);
