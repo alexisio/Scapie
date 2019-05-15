@@ -22,6 +22,7 @@ module.exports = class AboutCommand extends Commando.Command {
     }
 
     async createEmbed() {
+        const d = moment.duration(this.client.uptime, 'milliseconds');
         let embed = new RichEmbed()
             .setTimestamp()
             .setAuthor('Scapie')
@@ -29,7 +30,7 @@ module.exports = class AboutCommand extends Commando.Command {
             .addField('Bot Stats',
                 `Guild Count: ${Object.keys(this.client.guilds).length}\n` +
                 `Ping: ${this.client.ping}\n` +
-                `Uptime: ${moment.duration(this.client.uptime, 'milliseconds').asHours().toFixed(3)} hours`,
+                `Uptime: ${d.asMonths()} month(s) ${d.asDays()} days(s) ${d.asHours().toFixed(3)} hour(s)`,
                 false);
         return embed;
     }
