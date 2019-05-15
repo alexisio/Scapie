@@ -30,7 +30,7 @@ module.exports = class AboutCommand extends Commando.Command {
             .addField('Bot Stats',
                 `Guild Count: ${Object.keys(this.client.guilds).length}\n` +
                 `Ping: ${this.client.ping}\n` +
-                `Uptime: ${d.asMonths()} month(s) ${d.asDays()} days(s) ${d.asHours().toFixed(3)} hour(s)`,
+                `Uptime: ${d.asMonths() >= 1 ? d.asMonths().toFixed(0) + ' months' : '' } ${d.asDays() >= 1 ? d.asDays().toFixed(0) + ' days' : '' } ${d.asHours().toFixed(2)} hours`,
                 false);
         return embed;
     }
