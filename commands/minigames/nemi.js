@@ -31,6 +31,7 @@ module.exports = class NemiCommand extends Commando.Command {
             .setTimestamp()
             .setDescription(`${flair !== null ? post.data.link_flair_text.mdbold().toUpperCase() + ' ': ''}${post.data.title}`)
             .setImage(`${post.data.preview.images[0].source.url}`)
+            .addField('Image URL', `URL: ${post.data.preview.images[0].source.url}`);
         return embed;
     }
 };
