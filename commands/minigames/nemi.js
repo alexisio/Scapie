@@ -30,8 +30,8 @@ module.exports = class NemiCommand extends Commando.Command {
             .setAuthor(post.data.author, ``)
             .setTimestamp()
             .setDescription(`${flair !== null ? post.data.link_flair_text.mdbold().toUpperCase() + ' ': ''}${post.data.title}`)
-            .setImage(`${encodeURIComponent(post.data.preview.images[0].source.url)}`)
-            .addField('Image URL', `URL: ${encodeURIComponent(post.data.preview.images[0].source.url)}`);
+            .setImage(`https://preview.redd.it/s0znpnemrsz21.png?auto=webp&s=f751b0994d9b80794cb4102d354f5ba1c72699e4`);
+            // `${post.data.preview.images[0].source.url}`
         return embed;
     }
 };
