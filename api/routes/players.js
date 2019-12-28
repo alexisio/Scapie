@@ -17,6 +17,20 @@ module.exports = function(jwtCheck, adminCheck) {
         }
     });
 
+    router.get('/oldschool/:username/stats', (req, res) => {
+        if (typeof req.params.username !== 'undefined') {
+            let username = req.params.username;
+            rsapi.osrs.player.hiscores(username).then(function(stats) {
+                return res.send(stats);
+            }).catch(function(err) {
+                return res.status(404).send({message: err.message});
+            });
+        }
+        else {
+            return res.status(500).send({message: 'Must send in a display name to check'});
+        }
+    });
+
     router.get('/:username/stats/:stat', (req, res) => {
         if (typeof req.params.username !== 'undefined' && typeof req.params.stat !== 'undefined') {
             let username = req.params.username;
@@ -36,6 +50,27 @@ module.exports = function(jwtCheck, adminCheck) {
             return res.status(500).send({message: 'Must send in a display name to check'});
         }
     });
+
+    router.get('/oldschool/:username/stats/:stat', (req, res) => {
+        if (typeof req.params.username !== 'undefined' && typeof req.params.stat !== 'undefined') {
+            let username = req.params.username;
+            let stat = req.params.stat;
+            rsapi.rs.player.hiscores(username).then(function(stats) {
+                let lookup = typeof skillAlias[stat] !== 'undefined' ? skillAlias[stat] : stat;
+                let obj = {};
+                obj['name'] = username;
+                obj['skill'] = lookup;
+                obj['detail'] = stats.stats[lookup];
+                return res.send(obj);
+            }).catch(function(err) {
+                return res.status(404).send({message: err.message});
+            });
+        }
+        else {
+            return res.status(500).send({message: 'Must send in a display name to check'});
+        }
+    });
+
 
     router.get('/:username/details', (req, res) => {
         if (typeof req.params.username !== 'undefined') {
