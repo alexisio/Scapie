@@ -65,7 +65,7 @@ module.exports = class OSStatsCommand extends Commando.Command {
             username = username.substring(0, username.indexOf('#')).trim();
         }
 
-        let api = `/api/oldschool/players/${username}/stats/${typeof stat !== 'undefined' ? stat : ''}`;
+        let api = `/api/players/oldschool/${username}/stats/${typeof stat !== 'undefined' ? stat : ''}`;
 
         util.request.api(api).then(result => {
             console.log(result);
