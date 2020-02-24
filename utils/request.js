@@ -41,7 +41,7 @@ Request.prototype.api = function (url, method, form) {
     });
 };
 
-Request.prototype.remoteApi = function (url, method, form) {
+Request.prototype.remoteApi = function (url, method, form, body) {
     return new Promise(function (resolve, reject) {
         if (typeof method == 'undefined') {
             method = 'GET';
@@ -53,6 +53,9 @@ Request.prototype.remoteApi = function (url, method, form) {
         };
         if (typeof form !== 'undefined') {
             options.form = form;
+        }
+        if (typeof body !== 'undefined') {
+            options.body = body;
         }
         request(options, function (error, response, json) {
             if (error) {
