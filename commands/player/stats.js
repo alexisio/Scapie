@@ -22,7 +22,8 @@ const skillTypes = {
             'woodcutting',
             'farming',
             'hunter',
-            'divination'
+            'divination',
+			'archaeology'
         ]
     },
     'artisan': {
