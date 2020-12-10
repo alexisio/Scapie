@@ -61,8 +61,8 @@ module.exports = class StatsCommand extends Commando.Command {
         });
     }
 
-    async run(message, args) {
-        emojis = message.client.emojis;
+    async run(message, args) { }
+        /*emojis = message.client.emojis;
         let username = args;
         let stat = undefined;
         if (username.indexOf('#') > -1) {
@@ -78,7 +78,7 @@ module.exports = class StatsCommand extends Commando.Command {
         }).catch(err => {
             console.log('err', err);
         });
-    }
+    }*/
 
     createEmbed(result) {
         var ava = `https://secure.runescape.com/m=avatar-rs/'${result.name.trim().replace(/ /g, '%20')}/chat.png?timestamp=${new Date().getTime()}`;
